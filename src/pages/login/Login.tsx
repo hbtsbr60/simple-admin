@@ -11,6 +11,7 @@ import {
   AlertTitle,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
+import { Navigate, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -52,10 +53,15 @@ function Login() {
   });
 
   const { login, error, reset, data } = useLogin();
+  const { state }: any = useLocation();
 
   const onSubmit = handleSubmit(async (values) => {
     await login(values);
   });
+
+  if (data?.success) {
+    return <Navigate to={state?.from?.pathname || "/"} replace />;
+  }
 
   return (
     <Box display="flex" justifyContent="center" alignItems="center" flex={1}>
