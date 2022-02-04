@@ -1,8 +1,28 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import { AUTH } from "api/queries";
 import env from "./env";
 
-const client = new ApolloClient({
+const httpLink = createHttpLink({
   uri: env.GRAPHQL_ENDPOINT,
+});
+
+const authLink = setContext((_, { headers, cache }) => {
+  const data = cache.readQuery({
+    query: AUTH,
+  });
+
+  const token = data?.auth?.accessToken || "";
+  return {
+    headers: {
+      ...headers,
+      authorization: token,
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache({
     typePolicies: {
       Query: {
