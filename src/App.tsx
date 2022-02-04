@@ -2,10 +2,10 @@ import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import { ApolloProvider } from "@apollo/client";
 import { ColorModeProvider, useAppTheme } from "config/theme";
-import Pages from "pages";
 import { IntlProvider } from "react-intl";
 import messagesInEnglish from "locales/en";
 import client from "config/client";
+import Pages from "pages";
 
 function App() {
   const { colorMode, theme } = useAppTheme();
