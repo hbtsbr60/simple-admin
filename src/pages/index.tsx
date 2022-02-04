@@ -1,13 +1,12 @@
-import { Box } from "@mui/material";
 import { useAuth } from "api/auth";
 import {
   BrowserRouter,
   Navigate,
-  Outlet,
   Route,
   Routes,
   useLocation,
 } from "react-router-dom";
+import RootLayout from "layouts/RootLayout";
 import Home from "./home/Home";
 import Login from "./login/Login";
 import routes from "./routes";
@@ -34,19 +33,11 @@ function RedirectAuth({ children }: { children: JSX.Element }) {
   return children;
 }
 
-function Layout() {
-  return (
-    <Box display="flex" minHeight="100vh">
-      <Outlet />
-    </Box>
-  );
-}
-
 function Pages() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Layout />}>
+        <Route element={<RootLayout />}>
           <Route
             path={routes.LOGIN}
             element={
