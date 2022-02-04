@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useMemo } from "react";
 import {
-  Button,
   Container,
   Stack,
   TextField,
@@ -9,6 +8,7 @@ import {
   Box,
   Paper,
 } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -33,12 +33,12 @@ function Login() {
   const {
     register,
     handleSubmit,
-    formState: { errors, touchedFields },
+    formState: { errors, touchedFields, isSubmitting },
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = handleSubmit((values: FormData) => console.log(values));
+  const onSubmit = handleSubmit((values) => console.log(values));
 
   return (
     <Box display="flex" justifyContent="center" alignItems="center" flex={1}>
@@ -70,9 +70,13 @@ function Login() {
                   }
                   {...register("password")}
                 />
-                <Button type="submit" variant="contained">
+                <LoadingButton
+                  type="submit"
+                  variant="contained"
+                  loading={isSubmitting}
+                >
                   Login
-                </Button>
+                </LoadingButton>
               </Stack>
             </form>
           </Box>
