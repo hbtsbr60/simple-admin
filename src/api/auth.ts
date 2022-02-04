@@ -44,12 +44,16 @@ type Auth = {
   isLoggedIn?: boolean;
   accessToken?: string;
   refreshToken?: string;
+  logout: () => null;
 };
 
 export const useAuth = (): Auth => {
-  const { data } = useQuery(AUTH);
+  const { data, client } = useQuery(AUTH);
 
-  return data?.auth || {};
+  const logout = useCallback(async () => {
+    await client.resetStore();
+  }, []);
+
+  const auth = data?.auth || {};
+  return { logout, ...auth };
 };
-
-export const useLogout = () => {};
