@@ -1,4 +1,3 @@
-import React from "react";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import { ColorModeProvider, useAppTheme } from "config/theme";

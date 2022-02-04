@@ -1,11 +1,31 @@
-import React from "react";
-import { Container, Typography } from "@mui/material";
+import {
+  Button,
+  Container,
+  Stack,
+  TextField,
+  Typography,
+  Box,
+} from "@mui/material";
 
 function Login() {
   return (
-    <Container>
-      <Typography variant="h3">Login</Typography>
-    </Container>
+    <Box
+      minHeight="100vh"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Container maxWidth="xs">
+        <Stack spacing={2}>
+          <Box textAlign="center">
+            <Typography variant="h5">Simple Admin</Typography>
+          </Box>
+          <TextField required label="Username" placeholder="Username" />
+          <TextField required label="Password" placeholder="Password" />
+          <Button variant="contained">Login</Button>
+        </Stack>
+      </Container>
+    </Box>
   );
 }
 
