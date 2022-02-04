@@ -2,7 +2,7 @@ import React from "react";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import { ColorModeProvider, useAppTheme } from "config/theme";
-import Navigation from "pages";
+import Pages from "pages";
 
 function App() {
   const { colorMode, theme } = useAppTheme();
@@ -11,7 +11,7 @@ function App() {
     <ColorModeProvider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Navigation />
+        <Pages />
       </ThemeProvider>
     </ColorModeProvider>
   );

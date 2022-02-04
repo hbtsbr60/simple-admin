@@ -1,8 +1,8 @@
 import React from "react";
 import Login from "./login/Login";
 
-function Navigation() {
+function Pages() {
   return <Login />;
 }
 
-export default Navigation;
+export default Pages;
