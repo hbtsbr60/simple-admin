@@ -1,5 +1,8 @@
-const App = () => {
-  return <h1>Admin</h1>;
-};
+import React from "react";
+import { Button } from "@mui/material";
+
+function App() {
+  return <Button variant="contained">Hello World</Button>;
+}
 
 export default App;
