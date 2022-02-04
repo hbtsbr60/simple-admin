@@ -47,9 +47,9 @@ type Auth = {
 };
 
 export const useAuth = (): Auth => {
-  const { data: { auth } = {} } = useQuery(AUTH);
+  const { data } = useQuery(AUTH);
 
-  return auth || {};
+  return data?.auth || {};
 };
 
 export const useLogout = () => {};
