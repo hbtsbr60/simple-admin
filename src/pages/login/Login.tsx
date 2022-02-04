@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useIntl } from "react-intl";
+import { useLogin } from "api/auth";
 
 type FormData = {
   username: string;
@@ -48,7 +49,11 @@ function Login() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = handleSubmit((values) => console.log(values));
+  const { login } = useLogin();
+
+  const onSubmit = handleSubmit(async (values) => {
+    await login(values);
+  });
 
   return (
     <Box display="flex" justifyContent="center" alignItems="center" flex={1}>
