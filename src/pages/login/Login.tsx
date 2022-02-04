@@ -12,6 +12,7 @@ import { LoadingButton } from "@mui/lab";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useIntl } from "react-intl";
 
 type FormData = {
   username: string;
@@ -19,15 +20,24 @@ type FormData = {
 };
 
 function Login() {
+  const t = useIntl();
   const schema = useMemo(
     () =>
       yup
         .object({
-          userName: yup.string().required("Username is required"),
-          password: yup.string().required("Password is required"),
+          username: yup.string().required(
+            t.formatMessage({
+              id: "login.validate.username",
+            })
+          ),
+          password: yup.string().required(
+            t.formatMessage({
+              id: "login.validate.password",
+            })
+          ),
         })
         .required(),
-    []
+    [t.locale]
   );
 
   const {
@@ -48,11 +58,15 @@ function Login() {
             <form onSubmit={onSubmit}>
               <Stack spacing={2}>
                 <Box textAlign="center">
-                  <Typography variant="h5">Simple Admin</Typography>
+                  <Typography variant="h5">
+                    {t.formatMessage({ id: "app.name" })}
+                  </Typography>
                 </Box>
                 <TextField
-                  label="Username"
-                  placeholder="Username"
+                  label={t.formatMessage({ id: "login.input.username" })}
+                  placeholder={t.formatMessage({
+                    id: "login.input.username",
+                  })}
                   error={touchedFields?.username && !!errors.username}
                   helperText={
                     touchedFields?.username && errors.username?.message
@@ -60,8 +74,10 @@ function Login() {
                   {...register("username")}
                 />
                 <TextField
-                  label="Password"
-                  placeholder="Password"
+                  label={t.formatMessage({ id: "login.input.password" })}
+                  placeholder={t.formatMessage({
+                    id: "login.input.password",
+                  })}
                   type="password"
                   autoComplete="password"
                   error={touchedFields?.password && !!errors.password}
@@ -75,7 +91,7 @@ function Login() {
                   variant="contained"
                   loading={isSubmitting}
                 >
-                  Login
+                  {t.formatMessage({ id: "login.submit" })}
                 </LoadingButton>
               </Stack>
             </form>
