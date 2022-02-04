@@ -14,7 +14,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 type FormData = {
-  userName: string;
+  username: string;
   password: string;
 };
 
@@ -53,11 +53,11 @@ function Login() {
                 <TextField
                   label="Username"
                   placeholder="Username"
-                  error={touchedFields?.userName && !!errors.userName}
+                  error={touchedFields?.username && !!errors.username}
                   helperText={
-                    touchedFields?.userName && errors.userName?.message
+                    touchedFields?.username && errors.username?.message
                   }
-                  {...register("userName")}
+                  {...register("username")}
                 />
                 <TextField
                   label="Password"
