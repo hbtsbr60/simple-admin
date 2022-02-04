@@ -1,24 +1,32 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useCallback } from "react";
-import { accessTokenVar, refreshTokenVar } from "config/client";
 import { LOGIN } from "./mutations";
 import { AUTH } from "./queries";
 
 export const useLogin = () => {
   const [mutate, { loading, data, reset, error }] = useMutation(LOGIN, {
     onError: (e) => console.log(e),
-    onCompleted: ({ loginAsAdmin }) => {
-      if (loginAsAdmin.success) {
-        accessTokenVar(loginAsAdmin.accessToken);
-        refreshTokenVar(loginAsAdmin.refreshToken);
-      }
-    },
   });
 
   const login = useCallback(async (input) => {
     await mutate({
       variables: {
         input,
+      },
+      update: (cache, { data: { loginAsAdmin } }) => {
+        if (loginAsAdmin.success) {
+          const { accessToken, refreshToken } = loginAsAdmin;
+          cache.writeQuery({
+            query: AUTH,
+            data: {
+              auth: {
+                isLoggedIn: true,
+                accessToken,
+                refreshToken,
+              },
+            },
+          });
+        }
       },
     });
   }, []);
@@ -39,9 +47,9 @@ type Auth = {
 };
 
 export const useAuth = (): Auth => {
-  const { data = {} } = useQuery(AUTH);
+  const { data: { auth } = {} } = useQuery(AUTH);
 
-  return data;
+  return auth || {};
 };
 
 export const useLogout = () => {};
