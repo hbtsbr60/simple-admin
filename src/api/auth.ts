@@ -5,7 +5,7 @@ import { AUTH } from "./queries";
 
 export const useLogin = () => {
   const [mutate, { loading, data, reset, error }] = useMutation(LOGIN, {
-    onError: (e) => console.log(e),
+    onError: () => null,
   });
 
   const login = useCallback(async (input) => {
