@@ -51,7 +51,7 @@ function Login() {
     resolver: yupResolver(schema),
   });
 
-  const { login, error, reset } = useLogin();
+  const { login, error, reset, data } = useLogin();
 
   const onSubmit = handleSubmit(async (values) => {
     await login(values);
@@ -69,6 +69,11 @@ function Login() {
                     {t.formatMessage({ id: "app.name" })}
                   </Typography>
                 </Box>
+                {data && !data.success && (
+                  <Alert severity="error" onClose={reset}>
+                    {data?.message}
+                  </Alert>
+                )}
                 {!!error && (
                   <Alert severity="error" onClose={reset}>
                     <AlertTitle>{error.name}</AlertTitle>
