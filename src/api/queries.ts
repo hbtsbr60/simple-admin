@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const AUTH = gql`
-  query GetAuthTokens {
+  query GetAuthState {
     auth @client {
       isLoggedIn
       accessToken
