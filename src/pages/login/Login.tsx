@@ -7,6 +7,8 @@ import {
   Typography,
   Box,
   Paper,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useForm } from "react-hook-form";
@@ -49,7 +51,7 @@ function Login() {
     resolver: yupResolver(schema),
   });
 
-  const { login } = useLogin();
+  const { login, error, reset } = useLogin();
 
   const onSubmit = handleSubmit(async (values) => {
     await login(values);
@@ -67,6 +69,12 @@ function Login() {
                     {t.formatMessage({ id: "app.name" })}
                   </Typography>
                 </Box>
+                {!!error && (
+                  <Alert severity="error" onClose={reset}>
+                    <AlertTitle>{error.name}</AlertTitle>
+                    {error.message}
+                  </Alert>
+                )}
                 <TextField
                   label={t.formatMessage({ id: "login.input.username" })}
                   placeholder={t.formatMessage({

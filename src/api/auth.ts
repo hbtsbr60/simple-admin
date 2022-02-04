@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { LOGIN } from "./mutations";
 
 export const useLogin = () => {
-  const [mutate, { loading, data }] = useMutation(LOGIN, {
+  const [mutate, { loading, data, reset, error }] = useMutation(LOGIN, {
     onError: (e) => console.log(e),
   });
 
@@ -18,7 +18,9 @@ export const useLogin = () => {
   return {
     login,
     loading,
-    response: data?.loginAsAdmin,
+    reset,
+    error,
+    data: data?.loginAsAdmin,
   };
 };
 
