@@ -17,6 +17,7 @@ const authLink = setContext((_, { headers, cache }) => {
     headers: {
       ...headers,
       authorization: token,
+      client_id: env.CLIENT_ID,
     },
   };
 });

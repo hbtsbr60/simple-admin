@@ -10,4 +10,25 @@ export const AUTH = gql`
   }
 `;
 
-export const STUB = "";
+export const GET_ME = gql`
+  query GetMe {
+    me {
+      success
+      message
+      code
+      user {
+        id
+        firstName
+        lastName
+        picture {
+          url
+          thumbnail
+        }
+        roles {
+          id
+          name
+        }
+      }
+    }
+  }
+`;
