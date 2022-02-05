@@ -7,9 +7,12 @@ import {
   useLocation,
 } from "react-router-dom";
 import RootLayout from "layouts/RootLayout";
-import Home from "./home/Home";
+import AppLayout from "layouts/AppLayout";
 import Login from "./login/Login";
 import routes from "./routes";
+import Users from "./users/Users";
+import Roles from "./roles/Roles";
+import Dashboard from "./dashboard/Dashboard";
 
 function RequireAuth({ children }: { children: JSX.Element }) {
   const location = useLocation();
@@ -50,10 +53,14 @@ function Pages() {
             path={routes.HOME}
             element={
               <RequireAuth>
-                <Home />
+                <AppLayout />
               </RequireAuth>
             }
-          />
+          >
+            <Route index element={<Dashboard />} />
+            <Route path={routes.USERS} element={<Users />} />
+            <Route path={routes.ROLES} element={<Roles />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

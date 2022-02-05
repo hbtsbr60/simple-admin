@@ -1,7 +1,8 @@
 import { Button, Container } from "@mui/material";
+import { Outlet } from "react-router-dom";
 import { useAuth } from "api/auth";
 
-function Home() {
+function AppLayout() {
   const { logout } = useAuth();
 
   return (
@@ -9,8 +10,9 @@ function Home() {
       <Button variant="contained" onClick={logout}>
         Logout
       </Button>
+      <Outlet />
     </Container>
   );
 }
 
-export default Home;
+export default AppLayout;
