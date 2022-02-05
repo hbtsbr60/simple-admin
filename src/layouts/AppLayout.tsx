@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import { useAuth, useGetMe } from "api/auth";
-import { Lightbulb } from "@mui/icons-material";
+import { Lightbulb, MenuOutlined } from "@mui/icons-material";
 import { useColorMode } from "config/theme";
 
 function AppLayout() {
@@ -37,8 +37,16 @@ function AppLayout() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar variant="dense">
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuOutlined />
+          </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Admin
+            ADMIN
           </Typography>
           <IconButton onClick={toggleColorMode} color="inherit">
             <Lightbulb />
