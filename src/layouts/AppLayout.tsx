@@ -34,17 +34,20 @@ export default function ResponsiveDrawer() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>();
 
-  const handleDrawerToggle = () => {
+  const handleDrawerToggle = React.useCallback(() => {
     setMobileOpen(!mobileOpen);
-  };
+  }, []);
 
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  const handleOpenUserMenu = React.useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorElUser(event.currentTarget);
+    },
+    []
+  );
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = React.useCallback(() => {
     setAnchorElUser(null);
-  };
+  }, []);
 
   if (loading) {
     return <LinearProgress style={{ width: "100%" }} />;
