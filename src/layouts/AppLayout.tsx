@@ -9,6 +9,7 @@ import {
   Toolbar,
   Typography,
   CircularProgress,
+  Tooltip,
 } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import { useAuth, useGetMe } from "api/auth";
@@ -35,14 +36,13 @@ function AppLayout() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar variant="dense">
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Admin
           </Typography>
           <IconButton onClick={toggleColorMode} color="inherit">
             <Lightbulb />
           </IconButton>
-          <Typography variant="subtitle1">{user.fullName}</Typography>
           <IconButton
             id="menu-appbar"
             aria-controls={open ? "menu-appbar" : undefined}
@@ -50,7 +50,13 @@ function AppLayout() {
             aria-expanded={open ? "true" : undefined}
             onClick={handleMenu}
           >
-            <Avatar alt={user.fullName} src={user.picture?.thumbnail} />
+            <Tooltip title={user.fullName}>
+              <Avatar
+                alt={user.fullName}
+                src={user.picture?.thumbnail}
+                sx={{ width: 32, height: 32 }}
+              />
+            </Tooltip>
           </IconButton>
           <Menu
             keepMounted
