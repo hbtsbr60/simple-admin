@@ -1,6 +1,6 @@
 const env = {
   GRAPHQL_ENDPOINT: "http://localhost:4000/graphql",
-  CLIENT_ID: "wcEE2CqlbOfi-blzZBR75",
+  CLIENT_ID: "nbgf_aicy1-B8pT01Iqtu",
 };
 
 export default env;
