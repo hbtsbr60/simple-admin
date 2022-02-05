@@ -9,10 +9,10 @@ import {
 import RootLayout from "layouts/RootLayout";
 import AppLayout from "layouts/AppLayout";
 import Login from "./login/Login";
-import routes from "./routes";
 import Users from "./users/Users";
 import Roles from "./roles/Roles";
 import Dashboard from "./dashboard/Dashboard";
+import routes from "./routes";
 
 function RequireAuth({ children }: { children: JSX.Element }) {
   const location = useLocation();
