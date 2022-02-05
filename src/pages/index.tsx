@@ -26,11 +26,10 @@ function RequireAuth({ children }: { children: JSX.Element }) {
 }
 
 function RedirectAuth({ children }: { children: JSX.Element }) {
-  const { state }: any = useLocation();
   const { isLoggedIn } = useAuth();
 
   if (isLoggedIn) {
-    return <Navigate to={state?.from?.pathname || routes.HOME} replace />;
+    return <Navigate to={routes.HOME} replace />;
   }
 
   return children;
