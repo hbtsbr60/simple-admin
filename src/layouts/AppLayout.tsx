@@ -1,7 +1,6 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -38,7 +37,7 @@ export default function ResponsiveDrawer() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>();
 
   const handleDrawerToggle = React.useCallback(() => {
-    setMobileOpen(!mobileOpen);
+    setMobileOpen((prev) => !prev);
   }, []);
 
   const handleOpenUserMenu = React.useCallback(
@@ -134,7 +133,6 @@ export default function ResponsiveDrawer() {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <CssBaseline />
       <AppBar
         position="fixed"
         sx={{
