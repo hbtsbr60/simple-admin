@@ -27,7 +27,7 @@ import ListItemLink from "components/ListItemLink";
 
 const drawerWidth = 240;
 
-export default function ResponsiveDrawer() {
+export default function AppLayout() {
   const t = useIntl();
   const navigate = useNavigate();
   const { toggleColorMode } = useColorMode();
