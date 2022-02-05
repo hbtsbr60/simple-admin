@@ -9,7 +9,7 @@ import List from "@mui/material/List";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useIntl } from "react-intl";
 import { Avatar, LinearProgress, Menu, MenuItem, Tooltip } from "@mui/material";
 import {
@@ -17,6 +17,9 @@ import {
   PersonOutlined,
   BadgeOutlined,
   DarkMode,
+  NotificationsOutlined,
+  MessageOutlined,
+  QuestionAnswerOutlined,
 } from "@mui/icons-material";
 import { useAuth, useGetMe } from "api/auth";
 import { useColorMode } from "config/theme";
@@ -27,6 +30,7 @@ const drawerWidth = 240;
 
 export default function ResponsiveDrawer() {
   const t = useIntl();
+  const navigate = useNavigate();
   const { toggleColorMode } = useColorMode();
   const { loading, user } = useGetMe();
   const { logout } = useAuth();
@@ -79,7 +83,23 @@ export default function ResponsiveDrawer() {
     },
   ];
 
+  const companyItems = [
+    {
+      to: routes.MESSAGES,
+      icon: <MessageOutlined />,
+      text: t.formatMessage({
+        id: "drawer.messages",
+      }),
+    },
+  ];
+
   const menuItems = [
+    {
+      text: t.formatMessage({
+        id: "menu.profile",
+      }),
+      onClick: () => navigate(`${routes.USERS}/${user.id}`),
+    },
     {
       text: t.formatMessage({
         id: "menu.logout",
@@ -100,6 +120,12 @@ export default function ResponsiveDrawer() {
       <Divider />
       <List>
         {entities.map(({ text, icon, to }) => (
+          <ListItemLink key={to} to={to} primary={text} icon={icon} />
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {companyItems.map(({ text, icon, to }) => (
           <ListItemLink key={to} to={to} primary={text} icon={icon} />
         ))}
       </List>
@@ -131,6 +157,16 @@ export default function ResponsiveDrawer() {
               id: "app.name",
             })}
           </Typography>
+          <Tooltip title={t.formatMessage({ id: "tooltip.notifications" })}>
+            <IconButton color="inherit" onClick={() => null}>
+              <NotificationsOutlined />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title={t.formatMessage({ id: "tooltip.chat" })}>
+            <IconButton color="inherit" onClick={() => null}>
+              <QuestionAnswerOutlined />
+            </IconButton>
+          </Tooltip>
           <Tooltip title={t.formatMessage({ id: "tooltip.toggle.darkmode" })}>
             <IconButton color="inherit" onClick={toggleColorMode}>
               <DarkMode />

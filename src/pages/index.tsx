@@ -12,6 +12,7 @@ import Login from "./login/Login";
 import Users from "./users/Users";
 import Roles from "./roles/Roles";
 import Dashboard from "./dashboard/Dashboard";
+import Messages from "./messages/Messages";
 import routes from "./routes";
 
 function RequireAuth({ children }: { children: JSX.Element }) {
@@ -43,6 +44,10 @@ const pages = [
   {
     path: routes.ROLES,
     element: <Roles />,
+  },
+  {
+    path: routes.MESSAGES,
+    element: <Messages />,
   },
 ];
 
