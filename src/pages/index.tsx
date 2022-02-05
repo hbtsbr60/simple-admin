@@ -36,6 +36,17 @@ function RedirectAuth({ children }: { children: JSX.Element }) {
   return children;
 }
 
+const pages = [
+  {
+    path: routes.USERS,
+    element: <Users />,
+  },
+  {
+    path: routes.ROLES,
+    element: <Roles />,
+  },
+];
+
 function Pages() {
   return (
     <BrowserRouter>
@@ -58,8 +69,9 @@ function Pages() {
             }
           >
             <Route index element={<Dashboard />} />
-            <Route path={routes.USERS} element={<Users />} />
-            <Route path={routes.ROLES} element={<Roles />} />
+            {pages.map(({ path, element }) => (
+              <Route path={path} element={element} />
+            ))}
           </Route>
         </Route>
       </Routes>
