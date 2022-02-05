@@ -21,8 +21,6 @@ function ListItemLink(props: ListItemLinkProps) {
   const resolved = useResolvedPath(to);
   const match = useMatch({ path: resolved.pathname, end: true });
 
-  console.log(match);
-
   const renderLink = React.useMemo(
     () =>
       React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, "to">>(
