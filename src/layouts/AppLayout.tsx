@@ -6,9 +6,6 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -23,6 +20,8 @@ import {
 } from "@mui/icons-material";
 import { useAuth, useGetMe } from "api/auth";
 import { useColorMode } from "config/theme";
+import routes from "pages/routes";
+import ListItemLink from "components/ListItemLink";
 
 const drawerWidth = 240;
 
@@ -55,6 +54,7 @@ export default function ResponsiveDrawer() {
 
   const drawerMainItems = [
     {
+      to: routes.HOME,
       icon: <Dashboard />,
       text: t.formatMessage({
         id: "drawer.dashboard",
@@ -64,12 +64,14 @@ export default function ResponsiveDrawer() {
 
   const entities = [
     {
+      to: routes.USERS,
       icon: <PersonOutlined />,
       text: t.formatMessage({
         id: "entity.users",
       }),
     },
     {
+      to: routes.ROLES,
       icon: <BadgeOutlined />,
       text: t.formatMessage({
         id: "entity.roles",
@@ -91,20 +93,14 @@ export default function ResponsiveDrawer() {
       <Toolbar />
       <Divider />
       <List>
-        {drawerMainItems.map(({ text, icon }) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{icon}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
+        {drawerMainItems.map(({ text, icon, to }) => (
+          <ListItemLink key={to} to={to} primary={text} icon={icon} />
         ))}
       </List>
       <Divider />
       <List>
-        {entities.map(({ text, icon }) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{icon}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
+        {entities.map(({ text, icon, to }) => (
+          <ListItemLink key={to} to={to} primary={text} icon={icon} />
         ))}
       </List>
     </div>
