@@ -21,10 +21,10 @@ import {
 } from "@mui/icons-material";
 import { useAuth, useGetMe } from "api/auth";
 import { useColorMode } from "config/theme";
-import routesMap from "pages/routesMap";
-import ListItemLink from "components/ListItemLink";
+import routeNameMap from "constants/routeNameMap";
 import { DRAWER_WIDTH } from "constants/styles";
 import ErrorState from "components/ErrorState";
+import ListItemLink from "components/ListItemLink";
 
 const drawerWidth = DRAWER_WIDTH;
 
@@ -62,7 +62,7 @@ export default function AppLayout() {
 
   const drawerMainItems = [
     {
-      to: routesMap.HOME,
+      to: routeNameMap.HOME,
       icon: <Dashboard />,
       text: t.formatMessage({
         id: "drawer.dashboard",
@@ -72,14 +72,14 @@ export default function AppLayout() {
 
   const authSection = [
     {
-      to: routesMap.USERS,
+      to: routeNameMap.USERS,
       icon: <PersonOutlined />,
       text: t.formatMessage({
         id: "entity.users",
       }),
     },
     {
-      to: routesMap.ROLES,
+      to: routeNameMap.ROLES,
       icon: <BadgeOutlined />,
       text: t.formatMessage({
         id: "entity.roles",
@@ -89,7 +89,7 @@ export default function AppLayout() {
 
   const reportsSections = [
     {
-      to: routesMap.MESSAGES,
+      to: routeNameMap.MESSAGES,
       icon: <MailOutline />,
       text: t.formatMessage({
         id: "drawer.messages",
@@ -102,7 +102,7 @@ export default function AppLayout() {
       text: t.formatMessage({
         id: "menu.profile",
       }),
-      onClick: () => navigate(`${routesMap.USERS}/${user.id}`),
+      onClick: () => navigate(`${routeNameMap.USERS}/${user.id}`),
     },
     {
       text: t.formatMessage({
