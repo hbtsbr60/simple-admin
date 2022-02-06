@@ -1,4 +1,4 @@
-const routes = {
+const routesMap = {
   HOME: "/",
   LOGIN: "login",
   USERS: "users",
@@ -6,4 +6,4 @@ const routes = {
   MESSAGES: "messages",
 };
 
-export default routes;
+export default routesMap;

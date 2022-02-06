@@ -21,7 +21,7 @@ import {
 } from "@mui/icons-material";
 import { useAuth, useGetMe } from "api/auth";
 import { useColorMode } from "config/theme";
-import routes from "pages/routes";
+import routesMap from "pages/routesMap";
 import ListItemLink from "components/ListItemLink";
 import { DRAWER_WIDTH } from "constants/styles";
 import ErrorState from "components/ErrorState";
@@ -62,7 +62,7 @@ export default function AppLayout() {
 
   const drawerMainItems = [
     {
-      to: routes.HOME,
+      to: routesMap.HOME,
       icon: <Dashboard />,
       text: t.formatMessage({
         id: "drawer.dashboard",
@@ -72,14 +72,14 @@ export default function AppLayout() {
 
   const authSection = [
     {
-      to: routes.USERS,
+      to: routesMap.USERS,
       icon: <PersonOutlined />,
       text: t.formatMessage({
         id: "entity.users",
       }),
     },
     {
-      to: routes.ROLES,
+      to: routesMap.ROLES,
       icon: <BadgeOutlined />,
       text: t.formatMessage({
         id: "entity.roles",
@@ -89,7 +89,7 @@ export default function AppLayout() {
 
   const reportsSections = [
     {
-      to: routes.MESSAGES,
+      to: routesMap.MESSAGES,
       icon: <MailOutline />,
       text: t.formatMessage({
         id: "drawer.messages",
@@ -102,7 +102,7 @@ export default function AppLayout() {
       text: t.formatMessage({
         id: "menu.profile",
       }),
-      onClick: () => navigate(`${routes.USERS}/${user.id}`),
+      onClick: () => navigate(`${routesMap.USERS}/${user.id}`),
     },
     {
       text: t.formatMessage({

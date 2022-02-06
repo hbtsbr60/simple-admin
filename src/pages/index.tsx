@@ -13,14 +13,14 @@ import Users from "./users/Users";
 import Roles from "./roles/Roles";
 import Dashboard from "./dashboard/Dashboard";
 import Messages from "./messages/Messages";
-import routes from "./routes";
+import routesMap from "./routesMap";
 
 function RequireAuth({ children }: { children: JSX.Element }) {
   const location = useLocation();
   const { isLoggedIn } = useAuth();
 
   if (!isLoggedIn) {
-    return <Navigate to={routes.LOGIN} state={{ from: location }} replace />;
+    return <Navigate to={routesMap.LOGIN} state={{ from: location }} replace />;
   }
 
   return children;
@@ -30,7 +30,7 @@ function RedirectAuth({ children }: { children: JSX.Element }) {
   const { isLoggedIn } = useAuth();
 
   if (isLoggedIn) {
-    return <Navigate to={routes.HOME} replace />;
+    return <Navigate to={routesMap.HOME} replace />;
   }
 
   return children;
@@ -38,15 +38,15 @@ function RedirectAuth({ children }: { children: JSX.Element }) {
 
 const pages = [
   {
-    path: routes.USERS,
+    path: routesMap.USERS,
     element: <Users />,
   },
   {
-    path: routes.ROLES,
+    path: routesMap.ROLES,
     element: <Roles />,
   },
   {
-    path: routes.MESSAGES,
+    path: routesMap.MESSAGES,
     element: <Messages />,
   },
 ];
@@ -57,7 +57,7 @@ function Pages() {
       <Routes>
         <Route element={<RootLayout />}>
           <Route
-            path={routes.LOGIN}
+            path={routesMap.LOGIN}
             element={
               <RedirectAuth>
                 <Login />
@@ -65,7 +65,7 @@ function Pages() {
             }
           />
           <Route
-            path={routes.HOME}
+            path={routesMap.HOME}
             element={
               <RequireAuth>
                 <AppLayout />

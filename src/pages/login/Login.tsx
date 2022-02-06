@@ -17,7 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useIntl } from "react-intl";
 import { useLogin } from "api/auth";
-import routes from "pages/routes";
+import routesMap from "pages/routesMap";
 
 type FormData = {
   username: string;
@@ -61,7 +61,7 @@ function Login() {
   });
 
   if (data?.success) {
-    return <Navigate to={state?.from?.pathname || routes.HOME} replace />;
+    return <Navigate to={state?.from?.pathname || routesMap.HOME} replace />;
   }
 
   return (
