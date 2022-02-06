@@ -17,8 +17,7 @@ import {
   BadgeOutlined,
   DarkMode,
   NotificationsOutlined,
-  MessageOutlined,
-  QuestionAnswerOutlined,
+  MailOutline,
 } from "@mui/icons-material";
 import { useAuth, useGetMe } from "api/auth";
 import { useColorMode } from "config/theme";
@@ -65,7 +64,7 @@ export default function AppLayout() {
     },
   ];
 
-  const entities = [
+  const authSection = [
     {
       to: routes.USERS,
       icon: <PersonOutlined />,
@@ -82,10 +81,10 @@ export default function AppLayout() {
     },
   ];
 
-  const companyItems = [
+  const settingsSection = [
     {
       to: routes.MESSAGES,
-      icon: <MessageOutlined />,
+      icon: <MailOutline />,
       text: t.formatMessage({
         id: "drawer.messages",
       }),
@@ -118,13 +117,13 @@ export default function AppLayout() {
       </List>
       <Divider />
       <List>
-        {entities.map(({ text, icon, to }) => (
+        {authSection.map(({ text, icon, to }) => (
           <ListItemLink key={to} to={to} primary={text} icon={icon} />
         ))}
       </List>
       <Divider />
       <List>
-        {companyItems.map(({ text, icon, to }) => (
+        {settingsSection.map(({ text, icon, to }) => (
           <ListItemLink key={to} to={to} primary={text} icon={icon} />
         ))}
       </List>
@@ -156,22 +155,22 @@ export default function AppLayout() {
             })}
           </Typography>
           <Tooltip title={t.formatMessage({ id: "tooltip.notifications" })}>
-            <IconButton color="inherit" onClick={() => null}>
+            <IconButton size="large" color="inherit" onClick={() => null}>
               <NotificationsOutlined />
             </IconButton>
           </Tooltip>
           <Tooltip title={t.formatMessage({ id: "tooltip.chat" })}>
-            <IconButton color="inherit" onClick={() => null}>
-              <QuestionAnswerOutlined />
+            <IconButton size="large" color="inherit" onClick={() => null}>
+              <MailOutline />
             </IconButton>
           </Tooltip>
           <Tooltip title={t.formatMessage({ id: "tooltip.toggle.darkmode" })}>
-            <IconButton color="inherit" onClick={toggleColorMode}>
+            <IconButton size="large" color="inherit" onClick={toggleColorMode}>
               <DarkMode />
             </IconButton>
           </Tooltip>
           <Tooltip title={user.fullName}>
-            <IconButton onClick={handleOpenUserMenu}>
+            <IconButton size="large" onClick={handleOpenUserMenu}>
               <Avatar alt={user.fullName} src={user.picture?.thumbnail}>
                 {user.firstName[0]}
               </Avatar>
