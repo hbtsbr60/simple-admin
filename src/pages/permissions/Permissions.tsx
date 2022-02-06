@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Box } from "@mui/material";
+import { Box, Stack, Button } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 function Permissions() {
@@ -15,8 +15,14 @@ function Permissions() {
 
   return (
     <Box display="flex">
-      <Box display="flex" flexGrow={1}>
-        <DataGrid checkboxSelection autoHeight rows={[]} columns={columns} />
+      <Box display="flex" flexGrow={1} flexDirection="column">
+        <Stack spacing={1}>
+          <Stack direction="row" justifyContent="flex-end">
+            <Button>Delete</Button>
+            <Button>Create</Button>
+          </Stack>
+          <DataGrid checkboxSelection autoHeight rows={[]} columns={columns} />
+        </Stack>
       </Box>
     </Box>
   );
