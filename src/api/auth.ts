@@ -1,7 +1,13 @@
-import { useMutation, useQuery } from "@apollo/client";
+import {
+  ApolloError,
+  useLazyQuery,
+  useMutation,
+  useQuery,
+} from "@apollo/client";
 import { useCallback } from "react";
+import { User } from "types";
 import { LOGIN } from "./mutations";
-import { AUTH, GET_ME } from "./queries";
+import { AUTH_STATE, GET_ME } from "./queries";
 
 export const useLogin = () => {
   const [mutate, { loading, data, reset, error }] = useMutation(LOGIN, {
@@ -17,7 +23,7 @@ export const useLogin = () => {
         if (loginAsAdmin.success) {
           const { accessToken, refreshToken } = loginAsAdmin;
           cache.writeQuery({
-            query: AUTH,
+            query: AUTH_STATE,
             data: {
               auth: {
                 isLoggedIn: true,
@@ -44,33 +50,36 @@ type Auth = {
   isLoggedIn?: boolean;
   accessToken?: string;
   refreshToken?: string;
-  logout: () => null;
+  loading: boolean;
+  logout: () => void;
+  getIdentity: () => void;
+  handleRefresh: () => void;
+  error?: ApolloError;
+  user?: User;
 };
 
 export const useAuth = (): Auth => {
-  const { data, client } = useQuery(AUTH);
+  const { data, client } = useQuery(AUTH_STATE);
+  const [getIdentity, { data: identity, loading, refetch, error }] =
+    useLazyQuery(GET_ME, { notifyOnNetworkStatusChange: true });
 
   const logout = useCallback(async () => {
     await client.resetStore();
   }, []);
 
-  const auth = data?.auth || {};
-  return { logout, ...auth };
-};
-
-export const useGetMe = () => {
-  const { data, loading, refetch, error } = useQuery(GET_ME, {
-    notifyOnNetworkStatusChange: true,
-  });
-
   const handleRefresh = useCallback(() => refetch(), []);
 
+  const auth = data?.auth;
+  const user = identity?.me?.user as User;
   return {
+    logout,
     loading,
-    handleRefresh,
-    user: data?.me?.user,
-    message: data?.message,
-    success: data?.success,
     error,
+    user,
+    handleRefresh,
+    getIdentity,
+    isLoggedIn: auth?.isLoggedIn,
+    accessToken: auth?.accessToken,
+    refreshToken: auth?.refreshToken,
   };
 };

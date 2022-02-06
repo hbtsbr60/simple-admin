@@ -19,7 +19,7 @@ import {
   NotificationsOutlined,
   MailOutline,
 } from "@mui/icons-material";
-import { useAuth, useGetMe } from "api/auth";
+import { useAuth } from "api/auth";
 import { useColorMode } from "config/theme";
 import routeNameMap from "constants/routeNameMap";
 import { DRAWER_WIDTH } from "constants/styles";
@@ -33,10 +33,12 @@ export default function AppLayout() {
   const t = useIntl();
   const navigate = useNavigate();
   const { toggleColorMode } = useColorMode();
-  const { loading, user, error, handleRefresh } = useGetMe();
-  const { logout } = useAuth();
+  const { logout, loading, user, error, handleRefresh, getIdentity } =
+    useAuth();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>();
+
+  React.useEffect(() => getIdentity(), []);
 
   const handleDrawerToggle = React.useCallback(() => {
     setMobileOpen((prev) => !prev);
@@ -57,7 +59,7 @@ export default function AppLayout() {
     return <LinearProgress style={{ width: "100%" }} />;
   }
 
-  if (error) {
+  if (!user || error) {
     return (
       <ErrorState
         message={t.formatMessage({ id: "error.someting.went.wrong" })}

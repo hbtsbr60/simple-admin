@@ -1,6 +1,6 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { AUTH } from "api/queries";
+import { AUTH_STATE } from "api/queries";
 import env from "./env";
 
 const httpLink = createHttpLink({
@@ -9,7 +9,7 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((_, { headers, cache }) => {
   const data = cache.readQuery({
-    query: AUTH,
+    query: AUTH_STATE,
   });
 
   const token = data?.auth?.accessToken || "";
