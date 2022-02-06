@@ -28,6 +28,7 @@ export const GET_ME = gql`
         roles {
           id
           name
+          permissions
         }
       }
     }
