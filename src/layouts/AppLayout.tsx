@@ -176,7 +176,7 @@ export default function AppLayout() {
   );
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", flex: 1 }}>
       <AppBar
         position="fixed"
         sx={{
@@ -222,7 +222,7 @@ export default function AppLayout() {
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        aria-label="mailbox folders"
+        aria-label="drawer"
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
