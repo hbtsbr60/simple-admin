@@ -23,8 +23,9 @@ import { useAuth, useGetMe } from "api/auth";
 import { useColorMode } from "config/theme";
 import routes from "pages/routes";
 import ListItemLink from "components/ListItemLink";
+import { DRAWER_WIDTH } from "constants/styles";
 
-const drawerWidth = 240;
+const drawerWidth = DRAWER_WIDTH;
 
 export default function AppLayout() {
   const t = useIntl();
