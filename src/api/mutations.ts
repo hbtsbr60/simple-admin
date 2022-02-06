@@ -12,4 +12,12 @@ export const LOGIN = gql`
   }
 `;
 
-export const STUB = "";
+export const LOGOUT = gql`
+  mutation Logout {
+    logout {
+      code
+      success
+      message
+    }
+  }
+`;

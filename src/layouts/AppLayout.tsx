@@ -19,7 +19,7 @@ import {
   NotificationsOutlined,
   MailOutline,
 } from "@mui/icons-material";
-import { useAuth } from "api/auth";
+import { useLogout, useGetMe } from "api/auth";
 import { useColorMode } from "config/theme";
 import routeNameMap from "constants/routeNameMap";
 import { DRAWER_WIDTH } from "constants/styles";
@@ -33,12 +33,10 @@ export default function AppLayout() {
   const t = useIntl();
   const navigate = useNavigate();
   const { toggleColorMode } = useColorMode();
-  const { logout, loading, user, error, handleRefresh, getIdentity } =
-    useAuth();
+  const { loading, user, error, handleRefresh } = useGetMe();
+  const { logout } = useLogout();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>();
-
-  React.useEffect(() => getIdentity(), []);
 
   const handleDrawerToggle = React.useCallback(() => {
     setMobileOpen((prev) => !prev);

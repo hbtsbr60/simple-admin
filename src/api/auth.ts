@@ -1,12 +1,7 @@
-import {
-  ApolloError,
-  useLazyQuery,
-  useMutation,
-  useQuery,
-} from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useCallback } from "react";
 import { User } from "types";
-import { LOGIN } from "./mutations";
+import { LOGIN, LOGOUT } from "./mutations";
 import { AUTH_STATE, GET_ME } from "./queries";
 
 export const useLogin = () => {
@@ -46,38 +41,46 @@ export const useLogin = () => {
   };
 };
 
-type Auth = {
-  isLoggedIn?: boolean;
-  accessToken?: string;
-  refreshToken?: string;
-  loading: boolean;
-  logout: () => void;
-  getIdentity: () => void;
-  handleRefresh: () => void;
-  error?: ApolloError;
-  user?: User;
-};
+export const useLogout = () => {
+  const [mutate, { client }] = useMutation(LOGOUT, {
+    onError: () => null,
+  });
 
-export const useAuth = (): Auth => {
-  const { data, client } = useQuery(AUTH_STATE);
-  const [getIdentity, { data: identity, loading, refetch, error }] =
-    useLazyQuery(GET_ME, { notifyOnNetworkStatusChange: true });
-
-  const logout = useCallback(async () => {
-    await client.resetStore();
+  const logout = useCallback(() => {
+    mutate();
+    client.resetStore();
   }, []);
 
-  const handleRefresh = useCallback(() => refetch(), []);
-
-  const auth = data?.auth;
-  const user = identity?.me?.user as User;
   return {
     logout,
+  };
+};
+
+export const useGetMe = () => {
+  const { data, loading, refetch, error } = useQuery(GET_ME, {
+    notifyOnNetworkStatusChange: true,
+  });
+
+  const handleRefresh = useCallback(() => refetch(), []);
+  const user = data?.me?.user as User;
+  return {
     loading,
     error,
     user,
     handleRefresh,
-    getIdentity,
+  };
+};
+
+type Auth = {
+  isLoggedIn?: boolean;
+  accessToken?: string;
+  refreshToken?: string;
+};
+export const useAuthState = (): Auth => {
+  const { data } = useQuery(AUTH_STATE);
+
+  const auth = data?.auth;
+  return {
     isLoggedIn: auth?.isLoggedIn,
     accessToken: auth?.accessToken,
     refreshToken: auth?.refreshToken,

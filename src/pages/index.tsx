@@ -1,4 +1,4 @@
-import { useAuth } from "api/auth";
+import { useAuthState } from "api/auth";
 import {
   BrowserRouter,
   Navigate,
@@ -17,7 +17,7 @@ import Messages from "./messages/Messages";
 
 function RequireAuth({ children }: { children: JSX.Element }) {
   const location = useLocation();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuthState();
 
   if (!isLoggedIn) {
     return (
@@ -29,7 +29,7 @@ function RequireAuth({ children }: { children: JSX.Element }) {
 }
 
 function RedirectAuth({ children }: { children: JSX.Element }) {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuthState();
 
   if (isLoggedIn) {
     return <Navigate to={routeNameMap.HOME} replace />;
