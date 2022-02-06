@@ -18,6 +18,7 @@ import {
   DarkMode,
   NotificationsOutlined,
   MailOutline,
+  Fingerprint,
 } from "@mui/icons-material";
 import { useLogout, useGetMe } from "api/auth";
 import { useColorMode } from "config/theme";
@@ -89,6 +90,13 @@ export default function AppLayout() {
       icon: <BadgeOutlined />,
       text: t.formatMessage({
         id: "entity.roles",
+      }),
+    },
+    {
+      to: routeNameMap.PERMISSIONS,
+      icon: <Fingerprint />,
+      text: t.formatMessage({
+        id: "entity.permissions",
       }),
     },
   ];

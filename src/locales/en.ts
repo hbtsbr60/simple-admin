@@ -7,6 +7,7 @@ const messagesInEnglish = {
   "drawer.messages": "Messages",
   "entity.users": "Users",
   "entity.roles": "Roles",
+  "entity.permissions": "Permissions",
   "error.something.went.wrong": "Something went wrong...",
   "login.input.username": "Username",
   "login.input.password": "Password",

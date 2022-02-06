@@ -1,15 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import * as React from "react";
 import Link, { LinkProps } from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import routeNameMap from "constants/routeNameMap";
-
-const breadcrumbNameMap: { [key: string]: string } = {
-  [routeNameMap.USERS]: "Users",
-  [routeNameMap.ROLES]: "Roles",
-  [routeNameMap.MESSAGES]: "Messages",
-};
+import { useIntl } from "react-intl";
 
 interface LinkRouterProps extends LinkProps {
   to: string;
@@ -25,8 +21,19 @@ LinkRouter.defaultProps = {
 };
 
 function RouterBreadcrumbs() {
+  const t = useIntl();
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
+
+  const breadcrumbNameMap: { [key: string]: string } = React.useMemo(
+    () => ({
+      [routeNameMap.USERS]: t.formatMessage({ id: "entity.users" }),
+      [routeNameMap.ROLES]: t.formatMessage({ id: "entity.roles" }),
+      [routeNameMap.MESSAGES]: t.formatMessage({ id: "entity.messages" }),
+      [routeNameMap.PERMISSIONS]: t.formatMessage({ id: "entity.permissions" }),
+    }),
+    [t.locale]
+  );
 
   return (
     <Breadcrumbs aria-label="breadcrumb">

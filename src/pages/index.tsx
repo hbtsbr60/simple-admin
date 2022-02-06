@@ -14,6 +14,7 @@ import Users from "./users/Users";
 import Roles from "./roles/Roles";
 import Dashboard from "./dashboard/Dashboard";
 import Messages from "./messages/Messages";
+import Permissions from "./permissions/Permissions";
 
 function RequireAuth({ children }: { children: JSX.Element }) {
   const location = useLocation();
@@ -50,6 +51,10 @@ const pages = [
   {
     path: routeNameMap.MESSAGES,
     element: <Messages />,
+  },
+  {
+    path: routeNameMap.PERMISSIONS,
+    element: <Permissions />,
   },
 ];
 
