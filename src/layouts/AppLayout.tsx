@@ -58,7 +58,12 @@ export default function AppLayout() {
   }
 
   if (error) {
-    return <ErrorState onRetry={handleRefresh} />;
+    return (
+      <ErrorState
+        message={t.formatMessage({ id: "error.someting.went.wrong" })}
+        onRetry={handleRefresh}
+      />
+    );
   }
 
   const drawerMainItems = [
