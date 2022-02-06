@@ -59,7 +59,6 @@ export default function AppLayout() {
   }
 
   if (!user || error) {
-    console.log(error);
     return (
       <ErrorState
         message={t.formatMessage({ id: "error.something.went.wrong" })}
