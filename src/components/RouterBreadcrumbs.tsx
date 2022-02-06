@@ -1,14 +1,13 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import Link, { LinkProps } from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 
 const breadcrumbNameMap: { [key: string]: string } = {
-  "/inbox": "Inbox",
-  "/inbox/important": "Important",
-  "/trash": "Trash",
-  "/spam": "Spam",
-  "/drafts": "Drafts",
+  "/users": "Users",
+  "/roles": "Roles",
+  "/messages": "Messages",
 };
 
 interface LinkRouterProps extends LinkProps {
@@ -16,11 +15,15 @@ interface LinkRouterProps extends LinkProps {
   replace?: boolean;
 }
 
-const LinkRouter = (props: LinkRouterProps) => (
-  <Link {...props} component={RouterLink as any} />
-);
+function LinkRouter(props: LinkRouterProps) {
+  return <Link {...props} component={RouterLink as any} />;
+}
 
-const RouterBreadcrumbs = () => {
+LinkRouter.defaultProps = {
+  replace: undefined,
+};
+
+function RouterBreadcrumbs() {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
 
@@ -45,6 +48,6 @@ const RouterBreadcrumbs = () => {
       })}
     </Breadcrumbs>
   );
-};
+}
 
 export default RouterBreadcrumbs;

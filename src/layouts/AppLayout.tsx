@@ -25,6 +25,7 @@ import routeNameMap from "constants/routeNameMap";
 import { DRAWER_WIDTH } from "constants/styles";
 import ErrorState from "components/ErrorState";
 import ListItemLink from "components/ListItemLink";
+import RouterBreadcrumbs from "components/RouterBreadcrumbs";
 
 const drawerWidth = DRAWER_WIDTH;
 
@@ -251,6 +252,7 @@ export default function AppLayout() {
         }}
       >
         <Toolbar />
+        <RouterBreadcrumbs />
         <Outlet />
       </Box>
     </Box>
