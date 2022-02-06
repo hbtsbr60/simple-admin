@@ -3,11 +3,12 @@ import Link, { LinkProps } from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { Link as RouterLink, useLocation } from "react-router-dom";
+import routeNameMap from "constants/routeNameMap";
 
 const breadcrumbNameMap: { [key: string]: string } = {
-  "/users": "Users",
-  "/roles": "Roles",
-  "/messages": "Messages",
+  [routeNameMap.USERS]: "Users",
+  [routeNameMap.ROLES]: "Roles",
+  [routeNameMap.MESSAGES]: "Messages",
 };
 
 interface LinkRouterProps extends LinkProps {
