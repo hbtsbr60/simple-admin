@@ -3,6 +3,8 @@ const messagesInEnglish = {
   "button.retry": "Retry",
   "button.submit": "Login",
   "button.goback": "Go back",
+  "button.delete": "Delete",
+  "button.create": "Create",
   "drawer.dashboard": "Dashboard",
   "entity.users": "Users",
   "entity.roles": "Roles",
