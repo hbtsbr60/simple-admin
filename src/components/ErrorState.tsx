@@ -1,5 +1,6 @@
-import { Button, Container, Typography, Box } from "@mui/material";
+import { Button, Container, Typography, Box, Stack } from "@mui/material";
 import { useIntl } from "react-intl";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   onRetry?: () => void;
@@ -7,18 +8,26 @@ interface Props {
 
 function ErrorState(props: Props) {
   const t = useIntl();
+  const navigate = useNavigate();
   const { onRetry } = props;
   return (
     <Box display="flex" justifyContent="center" alignItems="center" flex={1}>
       <Container maxWidth="xs">
-        <Typography variant="h4">
-          {t.formatMessage({ id: "error.something.went.wrong" })}
-        </Typography>
-        {!!onRetry && (
-          <Button onClick={onRetry}>
-            {t.formatMessage({ id: "button.retry" })}
-          </Button>
-        )}
+        <Stack spacing={2}>
+          <Typography variant="h4">
+            {t.formatMessage({ id: "error.something.went.wrong" })}
+          </Typography>
+          <Stack spacing={2} direction="row">
+            <Button variant="contained" onClick={() => navigate(-1)}>
+              {t.formatMessage({ id: "button.goback" })}
+            </Button>
+            {!!onRetry && (
+              <Button onClick={onRetry}>
+                {t.formatMessage({ id: "button.retry" })}
+              </Button>
+            )}
+          </Stack>
+        </Stack>
       </Container>
     </Box>
   );
