@@ -81,7 +81,7 @@ export default function AppLayout() {
     },
   ];
 
-  const settingsSection = [
+  const reportsSections = [
     {
       to: routes.MESSAGES,
       icon: <MailOutline />,
@@ -106,6 +106,31 @@ export default function AppLayout() {
     },
   ];
 
+  const renderMenu = (
+    <Menu
+      sx={{ mt: "45px" }}
+      id="menu-appbar"
+      anchorEl={anchorElUser}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      keepMounted
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      open={Boolean(anchorElUser)}
+      onClose={handleCloseUserMenu}
+    >
+      {menuItems.map(({ text, onClick }) => (
+        <MenuItem key={text} onClick={onClick}>
+          <Typography textAlign="center">{text}</Typography>
+        </MenuItem>
+      ))}
+    </Menu>
+  );
+
   const drawer = (
     <div>
       <Toolbar />
@@ -123,7 +148,7 @@ export default function AppLayout() {
       </List>
       <Divider />
       <List>
-        {settingsSection.map(({ text, icon, to }) => (
+        {reportsSections.map(({ text, icon, to }) => (
           <ListItemLink key={to} to={to} primary={text} icon={icon} />
         ))}
       </List>
@@ -159,45 +184,19 @@ export default function AppLayout() {
               <NotificationsOutlined />
             </IconButton>
           </Tooltip>
-          <Tooltip title={t.formatMessage({ id: "tooltip.chat" })}>
-            <IconButton size="large" color="inherit" onClick={() => null}>
-              <MailOutline />
-            </IconButton>
-          </Tooltip>
           <Tooltip title={t.formatMessage({ id: "tooltip.toggle.darkmode" })}>
             <IconButton size="large" color="inherit" onClick={toggleColorMode}>
               <DarkMode />
             </IconButton>
           </Tooltip>
           <Tooltip title={user.fullName}>
-            <IconButton size="large" onClick={handleOpenUserMenu}>
+            <IconButton edge="end" size="large" onClick={handleOpenUserMenu}>
               <Avatar alt={user.fullName} src={user.picture?.thumbnail}>
                 {user.firstName[0]}
               </Avatar>
             </IconButton>
           </Tooltip>
-          <Menu
-            sx={{ mt: "45px" }}
-            id="menu-appbar"
-            anchorEl={anchorElUser}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            open={Boolean(anchorElUser)}
-            onClose={handleCloseUserMenu}
-          >
-            {menuItems.map(({ text, onClick }) => (
-              <MenuItem key={text} onClick={onClick}>
-                <Typography textAlign="center">{text}</Typography>
-              </MenuItem>
-            ))}
-          </Menu>
+          {renderMenu}
         </Toolbar>
       </AppBar>
       <Box
