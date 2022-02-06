@@ -59,9 +59,10 @@ export default function AppLayout() {
   }
 
   if (!user || error) {
+    console.log(error);
     return (
       <ErrorState
-        message={t.formatMessage({ id: "error.someting.went.wrong" })}
+        message={t.formatMessage({ id: "error.something.went.wrong" })}
         onRetry={handleRefresh}
       />
     );
@@ -106,7 +107,7 @@ export default function AppLayout() {
       to: routeNameMap.MESSAGES,
       icon: <MailOutline />,
       text: t.formatMessage({
-        id: "drawer.messages",
+        id: "entity.messages",
       }),
     },
   ];
