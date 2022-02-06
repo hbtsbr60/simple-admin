@@ -24,6 +24,7 @@ import { useColorMode } from "config/theme";
 import routes from "pages/routes";
 import ListItemLink from "components/ListItemLink";
 import { DRAWER_WIDTH } from "constants/styles";
+import ErrorState from "components/ErrorState";
 
 const drawerWidth = DRAWER_WIDTH;
 
@@ -31,7 +32,7 @@ export default function AppLayout() {
   const t = useIntl();
   const navigate = useNavigate();
   const { toggleColorMode } = useColorMode();
-  const { loading, user } = useGetMe();
+  const { loading, user, error, handleRefresh } = useGetMe();
   const { logout } = useAuth();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>();
@@ -53,6 +54,10 @@ export default function AppLayout() {
 
   if (loading) {
     return <LinearProgress style={{ width: "100%" }} />;
+  }
+
+  if (error) {
+    return <ErrorState onRetry={handleRefresh} />;
   }
 
   const drawerMainItems = [

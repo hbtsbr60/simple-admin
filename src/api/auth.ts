@@ -63,11 +63,11 @@ export const useGetMe = () => {
     notifyOnNetworkStatusChange: true,
   });
 
-  const onRefresh = useCallback(() => refetch(), []);
+  const handleRefresh = useCallback(() => refetch(), []);
 
   return {
     loading,
-    onRefresh,
+    handleRefresh,
     user: data?.me?.user,
     message: data?.message,
     success: data?.success,

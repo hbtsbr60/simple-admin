@@ -116,7 +116,7 @@ function Login() {
                   variant="contained"
                   loading={isSubmitting}
                 >
-                  {t.formatMessage({ id: "login.submit" })}
+                  {t.formatMessage({ id: "button.submit" })}
                 </LoadingButton>
               </Stack>
             </form>
