@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const LOGIN = gql`
   mutation AdminLogin($input: AdminLoginInput!) {
-    adminLogin(input: $input) {
+    loginToAdmin(input: $input) {
       code
       success
       message

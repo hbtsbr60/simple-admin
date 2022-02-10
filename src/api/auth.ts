@@ -14,9 +14,9 @@ export const useLogin = () => {
       variables: {
         input,
       },
-      update: (cache, { data: { adminLogin } }) => {
-        if (adminLogin.success) {
-          const { accessToken, refreshToken } = adminLogin;
+      update: (cache, { data: { loginToAdmin } }) => {
+        if (loginToAdmin.success) {
+          const { accessToken, refreshToken } = loginToAdmin;
           cache.writeQuery({
             query: AUTH_STATE,
             data: {
@@ -37,7 +37,7 @@ export const useLogin = () => {
     loading,
     reset,
     error,
-    data: data?.adminLogin,
+    data: data?.loginToAdmin,
   };
 };
 
