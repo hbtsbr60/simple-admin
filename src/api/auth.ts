@@ -1,8 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useCallback } from "react";
 import { User } from "types";
-import { LOGIN, LOGOUT } from "./mutations";
-import { AUTH_STATE, GET_ME } from "./queries";
+import { AUTH_STATE, GET_ME, LOGIN, LOGOUT } from "./queries/auth";
 
 export const useLogin = () => {
   const [mutate, { loading, data, reset, error }] = useMutation(LOGIN, {

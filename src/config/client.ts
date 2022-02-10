@@ -1,6 +1,6 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { AUTH_STATE } from "api/queries";
+import { AUTH_STATE } from "api/queries/auth";
 import env from "./env";
 
 const httpLink = createHttpLink({
