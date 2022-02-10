@@ -77,7 +77,7 @@ export default function AppLayout() {
     },
   ];
 
-  const authSection = [
+  const securitySection = [
     {
       to: routeNameMap.USERS,
       icon: <PersonOutlined />,
@@ -162,7 +162,7 @@ export default function AppLayout() {
       </List>
       <Divider />
       <List>
-        {authSection.map(({ text, icon, to }) => (
+        {securitySection.map(({ text, icon, to }) => (
           <ListItemLink key={to} to={to} primary={text} icon={icon} />
         ))}
       </List>
