@@ -1,14 +1,14 @@
 import { useQuery } from "@apollo/client";
 import { useCallback, useMemo } from "react";
-import { GET_USER_LIST } from "./queries/user";
+import { GET_ROLE_LIST } from "./queries/role";
 
-export const useGetUserList = () => {
-  const { loading, data, error, refetch } = useQuery(GET_USER_LIST, {
+export const useGetRoleList = () => {
+  const { loading, data, error, refetch } = useQuery(GET_ROLE_LIST, {
     notifyOnNetworkStatusChange: true,
   });
 
   const handleRefresh = useCallback(() => refetch(), []);
-  const rows = useMemo(() => data?.users?.items || [], [data?.users?.items]);
+  const rows = useMemo(() => data?.roles?.items || [], [data?.roles?.items]);
 
   return {
     loading,

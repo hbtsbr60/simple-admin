@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Box, Button, Stack } from "@mui/material";
-import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useIntl } from "react-intl";
 import { useGetUserList } from "api/user";
 
@@ -16,8 +16,7 @@ function Users() {
     ],
     []
   );
-  const { items, loading } = useGetUserList();
-  const rows = items as GridRowsProp;
+  const { rows, loading } = useGetUserList();
 
   return (
     <Box display="flex">
