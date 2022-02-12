@@ -25,6 +25,7 @@ function Roles() {
             <Button>{t.formatMessage({ id: "button.create" })}</Button>
           </Stack>
           <DataGrid
+            disableColumnMenu
             checkboxSelection
             autoHeight
             loading={loading}

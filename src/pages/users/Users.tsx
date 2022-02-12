@@ -27,11 +27,12 @@ function Users() {
             <Button>{t.formatMessage({ id: "button.create" })}</Button>
           </Stack>
           <DataGrid
-            loading={loading}
+            disableColumnMenu
             checkboxSelection
             autoHeight
             rows={rows}
             columns={columns}
+            loading={loading}
           />
         </Stack>
       </Box>

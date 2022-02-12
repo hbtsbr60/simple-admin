@@ -23,7 +23,13 @@ function Permissions() {
             <Button>{t.formatMessage({ id: "button.delete" })}</Button>
             <Button>{t.formatMessage({ id: "button.create" })}</Button>
           </Stack>
-          <DataGrid checkboxSelection autoHeight rows={[]} columns={columns} />
+          <DataGrid
+            disableColumnMenu
+            checkboxSelection
+            autoHeight
+            rows={[]}
+            columns={columns}
+          />
         </Stack>
       </Box>
     </Box>
