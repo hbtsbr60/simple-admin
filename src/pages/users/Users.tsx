@@ -1,7 +1,8 @@
 import { useMemo } from "react";
 import { Box, Button, Stack } from "@mui/material";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 import { useIntl } from "react-intl";
+import { useGetUserList } from "api/user";
 
 function Users() {
   const t = useIntl();
@@ -15,6 +16,8 @@ function Users() {
     ],
     []
   );
+  const { items, loading } = useGetUserList();
+  const rows = items as GridRowsProp;
 
   return (
     <Box display="flex">
@@ -24,7 +27,13 @@ function Users() {
             <Button>{t.formatMessage({ id: "button.delete" })}</Button>
             <Button>{t.formatMessage({ id: "button.create" })}</Button>
           </Stack>
-          <DataGrid checkboxSelection autoHeight rows={[]} columns={columns} />
+          <DataGrid
+            loading={loading}
+            checkboxSelection
+            autoHeight
+            rows={rows}
+            columns={columns}
+          />
         </Stack>
       </Box>
     </Box>
