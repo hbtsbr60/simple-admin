@@ -4,6 +4,7 @@ import {
   DataGrid,
   GridColDef,
   GridValueFormatterParams,
+  GridToolbar,
 } from "@mui/x-data-grid";
 import { useIntl } from "react-intl";
 import { useGetUserList } from "api/user";
@@ -60,6 +61,9 @@ function Users() {
             disableColumnMenu
             checkboxSelection
             autoHeight
+            components={{
+              Toolbar: GridToolbar,
+            }}
             rows={rows}
             columns={columns}
             loading={loading}

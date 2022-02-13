@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Box, Stack, Button } from "@mui/material";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 import { useIntl } from "react-intl";
 import { useGetRoleList } from "api/role";
 
@@ -36,6 +36,9 @@ function Roles() {
             disableColumnMenu
             checkboxSelection
             autoHeight
+            components={{
+              Toolbar: GridToolbar,
+            }}
             loading={loading}
             rows={rows}
             columns={columns}
