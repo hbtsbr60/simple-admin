@@ -52,23 +52,25 @@ function Users() {
   return (
     <Box display="flex">
       <Box display="flex" flexGrow={1} flexDirection="column">
-        <Stack spacing={1}>
-          <Stack direction="row" justifyContent="flex-end">
-            <Button>{t.formatMessage({ id: "button.delete" })}</Button>
-            <Button>{t.formatMessage({ id: "button.create" })}</Button>
-          </Stack>
-          <DataGrid
-            disableColumnMenu
-            checkboxSelection
-            autoHeight
-            components={{
-              Toolbar: GridToolbar,
-            }}
-            rows={rows}
-            columns={columns}
-            loading={loading}
-          />
+        <Stack direction="row" justifyContent="flex-end" spacing={1}>
+          <Button size="small">
+            {t.formatMessage({ id: "button.delete" })}
+          </Button>
+          <Button size="small">
+            {t.formatMessage({ id: "button.create" })}
+          </Button>
         </Stack>
+        <DataGrid
+          disableColumnMenu
+          checkboxSelection
+          autoHeight
+          components={{
+            Toolbar: GridToolbar,
+          }}
+          rows={rows}
+          columns={columns}
+          loading={loading}
+        />
       </Box>
     </Box>
   );
