@@ -183,6 +183,8 @@ export default function AppLayout() {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}
+        color="inherit"
+        elevation={1}
       >
         <Toolbar>
           <IconButton

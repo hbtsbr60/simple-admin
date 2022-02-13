@@ -12,18 +12,12 @@ const getDesignTokens = (mode: PaletteMode) => ({
     mode,
     ...(mode === "light"
       ? {
-          primary: {
-            main: "#3f20ba",
-          },
           text: {
             primary: grey[900],
             secondary: grey[800],
           },
         }
       : {
-          primary: {
-            main: "#3f20ba",
-          },
           text: {
             primary: "#fff",
             secondary: grey[500],
