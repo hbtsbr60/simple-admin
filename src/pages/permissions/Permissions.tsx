@@ -8,12 +8,28 @@ function Permissions() {
   const t = useIntl();
   const columns: GridColDef[] = useMemo(
     () => [
-      { field: "name", headerName: "Name", width: 150 },
-      { field: "action", headerName: "Action", width: 150 },
-      { field: "resource", headerName: "Resource", width: 150 },
-      { field: "description", headerName: "Description", flex: 1 },
+      {
+        field: "name",
+        headerName: t.formatMessage({ id: "col.name" }),
+        width: 150,
+      },
+      {
+        field: "action",
+        headerName: t.formatMessage({ id: "col.action" }),
+        width: 150,
+      },
+      {
+        field: "resource",
+        headerName: t.formatMessage({ id: "col.resource" }),
+        width: 150,
+      },
+      {
+        field: "description",
+        headerName: t.formatMessage({ id: "col.description" }),
+        flex: 1,
+      },
     ],
-    []
+    [t.locale]
   );
 
   const { loading, rows } = useGetPermissionList();

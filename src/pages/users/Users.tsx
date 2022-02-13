@@ -8,13 +8,33 @@ function Users() {
   const t = useIntl();
   const columns: GridColDef[] = useMemo(
     () => [
-      { field: "firstName", headerName: "First name", width: 150 },
-      { field: "lastLame", headerName: "Last name", width: 150 },
-      { field: "username", headerName: "Username", width: 150 },
-      { field: "email", headerName: "Email", width: 150 },
-      { field: "createdAt", headerName: "Created on", width: 150 },
+      {
+        field: "firstName",
+        headerName: t.formatMessage({ id: "col.firstname" }),
+        width: 150,
+      },
+      {
+        field: "lastLame",
+        headerName: t.formatMessage({ id: "col.lastname" }),
+        width: 150,
+      },
+      {
+        field: "username",
+        headerName: t.formatMessage({ id: "col.username" }),
+        width: 150,
+      },
+      {
+        field: "email",
+        headerName: t.formatMessage({ id: "col.email" }),
+        width: 150,
+      },
+      {
+        field: "createdAt",
+        headerName: t.formatMessage({ id: "col.createdOn" }),
+        width: 150,
+      },
     ],
-    []
+    [t.locale]
   );
   const { rows, loading } = useGetUserList();
 
