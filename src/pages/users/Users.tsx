@@ -12,7 +12,7 @@ function Users() {
       { field: "lastLame", headerName: "Last name", width: 150 },
       { field: "username", headerName: "Username", width: 150 },
       { field: "email", headerName: "Email", width: 150 },
-      { field: "createdAt", headerName: "Creation time", width: 150 },
+      { field: "createdAt", headerName: "Created on", width: 150 },
     ],
     []
   );
