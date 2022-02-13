@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { Box, Stack, Button } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useIntl } from "react-intl";
+import { useGetPermissionList } from "api/permission";
 
 function Permissions() {
   const t = useIntl();
@@ -15,6 +16,8 @@ function Permissions() {
     []
   );
 
+  const { loading, rows } = useGetPermissionList();
+
   return (
     <Box display="flex">
       <Box display="flex" flexGrow={1} flexDirection="column">
@@ -27,7 +30,8 @@ function Permissions() {
             disableColumnMenu
             checkboxSelection
             autoHeight
-            rows={[]}
+            loading={loading}
+            rows={rows}
             columns={columns}
           />
         </Stack>
