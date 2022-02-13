@@ -2,7 +2,6 @@ import { useMemo } from "react";
 import { Box, Button, Stack } from "@mui/material";
 import {
   DataGrid,
-  GridCellValue,
   GridColDef,
   GridValueFormatterParams,
 } from "@mui/x-data-grid";
@@ -35,13 +34,14 @@ function Users() {
       },
       {
         field: "createdAt",
+        type: "dateTime",
         headerName: t.formatMessage({ id: "col.createdOn" }),
         width: 150,
         valueFormatter: (params: GridValueFormatterParams) =>
           t.formatDate(params.value as string, {
             dateStyle: "medium",
           }),
-        valueParser: (value: GridCellValue) => new Date(value as string),
+        valueGetter: ({ value }) => value && new Date(value as string),
       },
     ],
     [t.locale]
