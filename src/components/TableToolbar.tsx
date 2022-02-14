@@ -13,7 +13,7 @@ function TableToolbar() {
 
   return (
     <GridToolbarContainer>
-      <Stack direction="row" spacing={1}>
+      <Stack direction="row" spacing={1} flexWrap="wrap">
         <GridToolbarColumnsButton />
         <GridToolbarFilterButton />
         <GridToolbarExport printOptions={{ disableToolbarButton: true }} />
