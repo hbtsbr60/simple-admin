@@ -26,15 +26,12 @@ export const GET_ME = gql`
           thumbnail
         }
         roles {
-          totalCount
-          items {
+          id
+          name
+          permissions {
             id
-            name
-            permissions {
-              id
-              action
-              resource
-            }
+            action
+            resource
           }
         }
       }
