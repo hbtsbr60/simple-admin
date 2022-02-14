@@ -5,7 +5,7 @@ const routeNameMap = {
   ROLES: "/roles",
   MESSAGES: "/messages",
   PERMISSIONS: "/permissions",
-  CREATE: "create",
+  NEW: "new",
 };
 
 export default routeNameMap;

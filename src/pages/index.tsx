@@ -16,9 +16,9 @@ import Roles from "./roles/Roles";
 import Dashboard from "./dashboard/Dashboard";
 import Messages from "./messages/Messages";
 import Permissions from "./permissions/Permissions";
-import CreateUserForm from "./users/CreateUserForm";
-import CreateRoleForm from "./roles/CreateRoleForm";
-import CreatePermissionForm from "./permissions/CreatePermissionForm";
+import NewUserForm from "./users/NewUserForm";
+import NewRoleForm from "./roles/NewRoleForm";
+import NewPermissionForm from "./permissions/NewPermissionForm";
 
 function Authenticated({ children }: { children: JSX.Element }) {
   const location = useLocation();
@@ -57,18 +57,15 @@ function Pages() {
             <Route index element={<Dashboard />} />
             <Route path={routeNameMap.USERS} element={<Outlet />}>
               <Route index element={<Users />} />
-              <Route path={routeNameMap.CREATE} element={<CreateUserForm />} />
+              <Route path={routeNameMap.NEW} element={<NewUserForm />} />
             </Route>
             <Route path={routeNameMap.ROLES} element={<Outlet />}>
               <Route index element={<Roles />} />
-              <Route path={routeNameMap.CREATE} element={<CreateRoleForm />} />
+              <Route path={routeNameMap.NEW} element={<NewRoleForm />} />
             </Route>
             <Route path={routeNameMap.PERMISSIONS} element={<Outlet />}>
               <Route index element={<Permissions />} />
-              <Route
-                path={routeNameMap.CREATE}
-                element={<CreatePermissionForm />}
-              />
+              <Route path={routeNameMap.NEW} element={<NewPermissionForm />} />
             </Route>
             {pages.map(({ path, element }) => (
               <Route key={path} path={path} element={element} />

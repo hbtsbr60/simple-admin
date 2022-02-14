@@ -23,7 +23,7 @@ function TableToolbar() {
           size="small"
           startIcon={<Add />}
           component={Link}
-          to={routeNameMap.CREATE}
+          to={routeNameMap.NEW}
         >
           {t.formatMessage({ id: "button.create" })}
         </Button>
