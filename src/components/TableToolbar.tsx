@@ -6,10 +6,12 @@ import {
   GridToolbarExport,
   GridToolbarFilterButton,
 } from "@mui/x-data-grid";
+import { Link, useLocation } from "react-router-dom";
 import { useIntl } from "react-intl";
 
 function TableToolbar() {
   const t = useIntl();
+  const { pathname } = useLocation();
 
   return (
     <GridToolbarContainer>
@@ -17,7 +19,12 @@ function TableToolbar() {
         <GridToolbarColumnsButton />
         <GridToolbarFilterButton />
         <GridToolbarExport printOptions={{ disableToolbarButton: true }} />
-        <Button size="small" startIcon={<Add />}>
+        <Button
+          size="small"
+          startIcon={<Add />}
+          component={Link}
+          to={`${pathname}/create`}
+        >
           {t.formatMessage({ id: "button.create" })}
         </Button>
         <Button color="error" size="small" startIcon={<Delete />}>
