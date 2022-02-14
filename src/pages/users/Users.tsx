@@ -47,7 +47,8 @@ function Users() {
     ],
     [t.locale]
   );
-  const { rows, loading, pageSize, setPageSize } = useGetUserList();
+  const { rows, loading, pageSize, setPageSize, page, setPage } =
+    useGetUserList();
 
   return (
     <Box display="flex">
@@ -64,14 +65,19 @@ function Users() {
           disableColumnMenu
           checkboxSelection
           autoHeight
+          pagination
+          paginationMode="server"
+          loading={loading}
+          rows={rows}
+          columns={columns}
+          pageSize={pageSize}
+          onPageSizeChange={setPageSize}
+          page={page}
+          onPageChange={setPage}
+          rowCount={rows.length}
           components={{
             Toolbar: GridToolbar,
           }}
-          rows={rows}
-          columns={columns}
-          loading={loading}
-          pageSize={pageSize}
-          onPageSizeChange={setPageSize}
         />
       </Box>
     </Box>

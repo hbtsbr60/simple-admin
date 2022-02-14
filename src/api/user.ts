@@ -3,6 +3,7 @@ import { useCallback, useMemo, useState } from "react";
 import { GET_USER_LIST } from "./queries/user";
 
 export const useGetUserList = () => {
+  const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(100);
   const { loading, data, error, refetch } = useQuery(GET_USER_LIST, {
     notifyOnNetworkStatusChange: true,
@@ -21,6 +22,8 @@ export const useGetUserList = () => {
     error,
     handleRefresh,
     rows,
+    page,
+    setPage,
     pageSize,
     setPageSize,
   };

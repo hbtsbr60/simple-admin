@@ -22,7 +22,8 @@ function Roles() {
     [t.locale]
   );
 
-  const { loading, rows, pageSize, setPageSize } = useGetRoleList();
+  const { loading, rows, pageSize, setPageSize, page, setPage } =
+    useGetRoleList();
 
   return (
     <Box display="flex">
@@ -39,14 +40,18 @@ function Roles() {
           disableColumnMenu
           checkboxSelection
           autoHeight
-          components={{
-            Toolbar: GridToolbar,
-          }}
+          pagination
+          paginationMode="server"
           loading={loading}
           rows={rows}
           columns={columns}
+          page={page}
+          onPageChange={setPage}
           pageSize={pageSize}
           onPageSizeChange={setPageSize}
+          components={{
+            Toolbar: GridToolbar,
+          }}
         />
       </Box>
     </Box>

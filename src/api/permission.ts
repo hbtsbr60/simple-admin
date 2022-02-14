@@ -3,6 +3,7 @@ import { useCallback, useMemo, useState } from "react";
 import { GET_PERMISSION_LIST } from "./queries/permission";
 
 export const useGetPermissionList = () => {
+  const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(100);
   const { loading, data, error, refetch } = useQuery(GET_PERMISSION_LIST, {
     notifyOnNetworkStatusChange: true,
@@ -24,6 +25,8 @@ export const useGetPermissionList = () => {
     error,
     handleRefresh,
     rows,
+    page,
+    setPage,
     pageSize,
     setPageSize,
   };

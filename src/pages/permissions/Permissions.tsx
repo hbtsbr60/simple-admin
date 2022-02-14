@@ -32,7 +32,8 @@ function Permissions() {
     [t.locale]
   );
 
-  const { loading, rows, pageSize, setPageSize } = useGetPermissionList();
+  const { loading, rows, pageSize, setPageSize, page, setPage } =
+    useGetPermissionList();
 
   return (
     <Box display="flex">
@@ -49,14 +50,18 @@ function Permissions() {
           disableColumnMenu
           checkboxSelection
           autoHeight
-          components={{
-            Toolbar: GridToolbar,
-          }}
+          pagination
+          paginationMode="server"
           loading={loading}
           rows={rows}
           columns={columns}
+          page={page}
+          onPageChange={setPage}
           pageSize={pageSize}
           onPageSizeChange={setPageSize}
+          components={{
+            Toolbar: GridToolbar,
+          }}
         />
       </Box>
     </Box>
