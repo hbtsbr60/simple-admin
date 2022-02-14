@@ -12,6 +12,7 @@ function Roles() {
         field: "name",
         headerName: t.formatMessage({ id: "col.name" }),
         width: 150,
+        hideable: false,
       },
       {
         field: "description",

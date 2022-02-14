@@ -17,6 +17,7 @@ function Users() {
         field: "firstName",
         headerName: t.formatMessage({ id: "col.firstname" }),
         width: 150,
+        hideable: false,
       },
       {
         field: "lastLame",

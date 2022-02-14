@@ -12,16 +12,19 @@ function Permissions() {
         field: "name",
         headerName: t.formatMessage({ id: "col.name" }),
         width: 150,
+        hideable: false,
       },
       {
         field: "action",
         headerName: t.formatMessage({ id: "col.action" }),
         width: 150,
+        hideable: false,
       },
       {
         field: "resource",
         headerName: t.formatMessage({ id: "col.resource" }),
         width: 150,
+        hideable: false,
       },
       {
         field: "description",
