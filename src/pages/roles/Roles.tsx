@@ -22,7 +22,7 @@ function Roles() {
     [t.locale]
   );
 
-  const { loading, rows, pageSize, setPageSize, page, setPage } =
+  const { loading, rows, pageSize, setPageSize, page, setPage, rowCount } =
     useGetRoleList();
 
   return (
@@ -49,6 +49,7 @@ function Roles() {
           onPageChange={setPage}
           pageSize={pageSize}
           onPageSizeChange={setPageSize}
+          rowCount={rowCount}
           components={{
             Toolbar: GridToolbar,
           }}

@@ -32,7 +32,7 @@ function Permissions() {
     [t.locale]
   );
 
-  const { loading, rows, pageSize, setPageSize, page, setPage } =
+  const { loading, rows, pageSize, setPageSize, page, setPage, rowCount } =
     useGetPermissionList();
 
   return (
@@ -59,6 +59,7 @@ function Permissions() {
           onPageChange={setPage}
           pageSize={pageSize}
           onPageSizeChange={setPageSize}
+          rowCount={rowCount}
           components={{
             Toolbar: GridToolbar,
           }}

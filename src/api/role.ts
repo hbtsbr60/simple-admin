@@ -27,6 +27,7 @@ export const useGetRoleList = () => {
     setPage,
     pageSize,
     setPageSize,
+    rowCount: rows.length,
   };
 };
 

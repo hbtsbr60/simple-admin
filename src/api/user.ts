@@ -27,6 +27,7 @@ export const useGetUserList = () => {
     setPage,
     pageSize,
     setPageSize,
+    rowCount: rows.length,
   };
 };
 

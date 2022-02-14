@@ -47,7 +47,7 @@ function Users() {
     ],
     [t.locale]
   );
-  const { rows, loading, pageSize, setPageSize, page, setPage } =
+  const { rows, loading, pageSize, setPageSize, page, setPage, rowCount } =
     useGetUserList();
 
   return (
@@ -74,7 +74,7 @@ function Users() {
           onPageSizeChange={setPageSize}
           page={page}
           onPageChange={setPage}
-          rowCount={rows.length}
+          rowCount={rowCount}
           components={{
             Toolbar: GridToolbar,
           }}
