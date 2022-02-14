@@ -36,7 +36,7 @@ function RouterBreadcrumbs() {
   );
 
   return (
-    <Breadcrumbs aria-label="breadcrumb">
+    <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 1 }}>
       <LinkRouter underline="hover" color="inherit" to="/">
         Home
       </LinkRouter>
