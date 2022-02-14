@@ -62,10 +62,6 @@ function Login() {
   });
 
   if (isLoggedIn) {
-    return <Navigate to={routeNameMap.HOME} replace />;
-  }
-
-  if (data?.success) {
     return <Navigate to={state?.from?.pathname || routeNameMap.HOME} replace />;
   }
 

@@ -54,19 +54,6 @@ export default function AppLayout() {
     setAnchorElUser(null);
   }, []);
 
-  if (loading) {
-    return <LinearProgress style={{ width: "100%" }} />;
-  }
-
-  if (!user || error) {
-    return (
-      <ErrorState
-        message={t.formatMessage({ id: "error.something.went.wrong" })}
-        onRetry={handleRefresh}
-      />
-    );
-  }
-
   const drawerMainItems = React.useMemo(
     () => [
       {
@@ -192,6 +179,19 @@ export default function AppLayout() {
     ),
     [drawerMainItems, securitySection, reportsSections]
   );
+
+  if (loading) {
+    return <LinearProgress style={{ width: "100%" }} />;
+  }
+
+  if (!user || error) {
+    return (
+      <ErrorState
+        message={t.formatMessage({ id: "error.something.went.wrong" })}
+        onRetry={handleRefresh}
+      />
+    );
+  }
 
   return (
     <Box sx={{ display: "flex", flex: 1 }}>
