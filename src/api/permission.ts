@@ -30,7 +30,7 @@ export const useGetPermissionList = () => {
     setPage,
     pageSize,
     setPageSize,
-    rowCount: rows.length,
+    rowCount: data?.permissions?.totalCount,
   };
 };
 
