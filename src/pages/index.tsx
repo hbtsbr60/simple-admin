@@ -2,6 +2,7 @@ import { useAuthState } from "api/auth";
 import {
   BrowserRouter,
   Navigate,
+  Outlet,
   Route,
   Routes,
   useLocation,
@@ -15,6 +16,7 @@ import Roles from "./roles/Roles";
 import Dashboard from "./dashboard/Dashboard";
 import Messages from "./messages/Messages";
 import Permissions from "./permissions/Permissions";
+import CreateUserForm from "./users/CreateUserForm";
 
 function Authenticated({ children }: { children: JSX.Element }) {
   const location = useLocation();
@@ -30,10 +32,6 @@ function Authenticated({ children }: { children: JSX.Element }) {
 }
 
 const pages = [
-  {
-    path: routeNameMap.USERS,
-    element: <Users />,
-  },
   {
     path: routeNameMap.ROLES,
     element: <Roles />,
@@ -63,6 +61,10 @@ function Pages() {
             }
           >
             <Route index element={<Dashboard />} />
+            <Route path={routeNameMap.USERS} element={<Outlet />}>
+              <Route index element={<Users />} />
+              <Route path={routeNameMap.CREATE} element={<CreateUserForm />} />
+            </Route>
             {pages.map(({ path, element }) => (
               <Route key={path} path={path} element={element} />
             ))}
