@@ -22,7 +22,7 @@ function Roles() {
     [t.locale]
   );
 
-  const { loading, rows } = useGetRoleList();
+  const { loading, rows, pageSize, setPageSize } = useGetRoleList();
 
   return (
     <Box display="flex">
@@ -45,6 +45,8 @@ function Roles() {
           loading={loading}
           rows={rows}
           columns={columns}
+          pageSize={pageSize}
+          onPageSizeChange={setPageSize}
         />
       </Box>
     </Box>

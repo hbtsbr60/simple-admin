@@ -32,7 +32,7 @@ function Permissions() {
     [t.locale]
   );
 
-  const { loading, rows } = useGetPermissionList();
+  const { loading, rows, pageSize, setPageSize } = useGetPermissionList();
 
   return (
     <Box display="flex">
@@ -55,6 +55,8 @@ function Permissions() {
           loading={loading}
           rows={rows}
           columns={columns}
+          pageSize={pageSize}
+          onPageSizeChange={setPageSize}
         />
       </Box>
     </Box>

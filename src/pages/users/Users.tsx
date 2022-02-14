@@ -47,7 +47,7 @@ function Users() {
     ],
     [t.locale]
   );
-  const { rows, loading } = useGetUserList();
+  const { rows, loading, pageSize, setPageSize } = useGetUserList();
 
   return (
     <Box display="flex">
@@ -70,6 +70,8 @@ function Users() {
           rows={rows}
           columns={columns}
           loading={loading}
+          pageSize={pageSize}
+          onPageSizeChange={setPageSize}
         />
       </Box>
     </Box>

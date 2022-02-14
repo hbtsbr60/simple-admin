@@ -1,10 +1,16 @@
 import { useQuery } from "@apollo/client";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { GET_USER_LIST } from "./queries/user";
 
 export const useGetUserList = () => {
+  const [pageSize, setPageSize] = useState(100);
   const { loading, data, error, refetch } = useQuery(GET_USER_LIST, {
     notifyOnNetworkStatusChange: true,
+    variables: {
+      page: {
+        size: pageSize,
+      },
+    },
   });
 
   const handleRefresh = useCallback(() => refetch(), []);
@@ -15,6 +21,8 @@ export const useGetUserList = () => {
     error,
     handleRefresh,
     rows,
+    pageSize,
+    setPageSize,
   };
 };
 

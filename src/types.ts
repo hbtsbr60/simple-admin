@@ -9,3 +9,7 @@ export interface User {
   };
   roles: [{ name: string }];
 }
+
+export interface Pagination {
+  pageSize?: number;
+}
