@@ -10,7 +10,7 @@ export const useGetUserList = () => {
     notifyOnNetworkStatusChange: true,
     variables: {
       page: {
-        size: pageSize,
+        limit: pageSize,
       },
     },
   });

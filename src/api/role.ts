@@ -10,7 +10,7 @@ export const useGetRoleList = () => {
     notifyOnNetworkStatusChange: true,
     variables: {
       page: {
-        size: pageSize,
+        limit: pageSize,
       },
     },
   });

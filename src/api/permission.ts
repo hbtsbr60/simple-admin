@@ -10,7 +10,7 @@ export const useGetPermissionList = () => {
     notifyOnNetworkStatusChange: true,
     variables: {
       page: {
-        size: pageSize,
+        limit: pageSize,
       },
     },
   });
