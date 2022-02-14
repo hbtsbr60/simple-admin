@@ -1,5 +1,5 @@
-import { useMutation, useQuery } from "@apollo/client";
 import { useCallback } from "react";
+import { useMutation, useQuery } from "@apollo/client";
 import { User } from "types";
 import { AUTH_STATE, GET_ME, LOGIN, LOGOUT } from "./queries/auth";
 

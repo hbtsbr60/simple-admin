@@ -1,10 +1,11 @@
-import { useQuery } from "@apollo/client";
 import { useCallback, useMemo, useState } from "react";
+import { useQuery } from "@apollo/client";
+import { INITIAL_PAGE, INITIAL_PAGE_SIZE } from "constants/pagination";
 import { GET_PERMISSION_LIST } from "./queries/permission";
 
 export const useGetPermissionList = () => {
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(100);
+  const [page, setPage] = useState(INITIAL_PAGE);
+  const [pageSize, setPageSize] = useState(INITIAL_PAGE_SIZE);
   const { loading, data, error, refetch } = useQuery(GET_PERMISSION_LIST, {
     notifyOnNetworkStatusChange: true,
     variables: {
