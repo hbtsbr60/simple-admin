@@ -67,112 +67,130 @@ export default function AppLayout() {
     );
   }
 
-  const drawerMainItems = [
-    {
-      to: routeNameMap.HOME,
-      icon: <Dashboard />,
-      text: t.formatMessage({
-        id: "drawer.dashboard",
-      }),
-    },
-  ];
-
-  const securitySection = [
-    {
-      to: routeNameMap.USERS,
-      icon: <PersonOutlined />,
-      text: t.formatMessage({
-        id: "entity.users",
-      }),
-    },
-    {
-      to: routeNameMap.ROLES,
-      icon: <BadgeOutlined />,
-      text: t.formatMessage({
-        id: "entity.roles",
-      }),
-    },
-    {
-      to: routeNameMap.PERMISSIONS,
-      icon: <Fingerprint />,
-      text: t.formatMessage({
-        id: "entity.permissions",
-      }),
-    },
-  ];
-
-  const reportsSections = [
-    {
-      to: routeNameMap.MESSAGES,
-      icon: <MailOutline />,
-      text: t.formatMessage({
-        id: "entity.messages",
-      }),
-    },
-  ];
-
-  const menuItems = [
-    {
-      text: t.formatMessage({
-        id: "menu.profile",
-      }),
-      onClick: () => navigate(`${routeNameMap.USERS}/${user.id}`),
-    },
-    {
-      text: t.formatMessage({
-        id: "menu.logout",
-      }),
-      onClick: logout,
-    },
-  ];
-
-  const renderMenu = (
-    <Menu
-      sx={{ mt: "45px" }}
-      id="menu-appbar"
-      anchorEl={anchorElUser}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={Boolean(anchorElUser)}
-      onClose={handleCloseUserMenu}
-    >
-      {menuItems.map(({ text, onClick }) => (
-        <MenuItem key={text} onClick={onClick}>
-          <Typography textAlign="center">{text}</Typography>
-        </MenuItem>
-      ))}
-    </Menu>
+  const drawerMainItems = React.useMemo(
+    () => [
+      {
+        to: routeNameMap.HOME,
+        icon: <Dashboard />,
+        text: t.formatMessage({
+          id: "drawer.dashboard",
+        }),
+      },
+    ],
+    [t.locale]
   );
 
-  const drawer = (
-    <div>
-      <Toolbar />
-      <Divider />
-      <List>
-        {drawerMainItems.map(({ text, icon, to }) => (
-          <ListItemLink key={to} to={to} primary={text} icon={icon} />
+  const securitySection = React.useMemo(
+    () => [
+      {
+        to: routeNameMap.USERS,
+        icon: <PersonOutlined />,
+        text: t.formatMessage({
+          id: "entity.users",
+        }),
+      },
+      {
+        to: routeNameMap.ROLES,
+        icon: <BadgeOutlined />,
+        text: t.formatMessage({
+          id: "entity.roles",
+        }),
+      },
+      {
+        to: routeNameMap.PERMISSIONS,
+        icon: <Fingerprint />,
+        text: t.formatMessage({
+          id: "entity.permissions",
+        }),
+      },
+    ],
+    [t.locale]
+  );
+
+  const reportsSections = React.useMemo(
+    () => [
+      {
+        to: routeNameMap.MESSAGES,
+        icon: <MailOutline />,
+        text: t.formatMessage({
+          id: "entity.messages",
+        }),
+      },
+    ],
+    [t.locale]
+  );
+
+  const menuItems = React.useMemo(
+    () => [
+      {
+        text: t.formatMessage({
+          id: "menu.profile",
+        }),
+        onClick: () => navigate(`${routeNameMap.USERS}/${user.id}`),
+      },
+      {
+        text: t.formatMessage({
+          id: "menu.logout",
+        }),
+        onClick: logout,
+      },
+    ],
+    [t.locale]
+  );
+
+  const renderMenu = React.useMemo(
+    () => (
+      <Menu
+        sx={{ mt: "45px" }}
+        id="menu-appbar"
+        anchorEl={anchorElUser}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        open={Boolean(anchorElUser)}
+        onClose={handleCloseUserMenu}
+      >
+        {menuItems.map(({ text, onClick }) => (
+          <MenuItem key={text} onClick={onClick}>
+            <Typography textAlign="center">{text}</Typography>
+          </MenuItem>
         ))}
-      </List>
-      <Divider />
-      <List>
-        {securitySection.map(({ text, icon, to }) => (
-          <ListItemLink key={to} to={to} primary={text} icon={icon} />
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {reportsSections.map(({ text, icon, to }) => (
-          <ListItemLink key={to} to={to} primary={text} icon={icon} />
-        ))}
-      </List>
-    </div>
+      </Menu>
+    ),
+    [menuItems, anchorElUser, handleCloseUserMenu]
+  );
+
+  const drawer = React.useMemo(
+    () => (
+      <div>
+        <Toolbar />
+        <Divider />
+        <List>
+          {drawerMainItems.map(({ text, icon, to }) => (
+            <ListItemLink key={to} to={to} primary={text} icon={icon} />
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {securitySection.map(({ text, icon, to }) => (
+            <ListItemLink key={to} to={to} primary={text} icon={icon} />
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {reportsSections.map(({ text, icon, to }) => (
+            <ListItemLink key={to} to={to} primary={text} icon={icon} />
+          ))}
+        </List>
+      </div>
+    ),
+    [drawerMainItems, securitySection, reportsSections]
   );
 
   return (
