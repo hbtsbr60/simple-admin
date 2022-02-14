@@ -39,6 +39,7 @@ function Roles() {
         <DataGrid
           disableColumnMenu
           checkboxSelection
+          disableSelectionOnClick
           autoHeight
           pagination
           paginationMode="server"

@@ -64,6 +64,7 @@ function Users() {
         <DataGrid
           disableColumnMenu
           checkboxSelection
+          disableSelectionOnClick
           autoHeight
           pagination
           paginationMode="server"
