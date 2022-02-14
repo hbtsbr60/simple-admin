@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { Box } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useIntl } from "react-intl";
+import { useNavigate } from "react-router-dom";
 import { useGetPermissionList } from "api/permission";
 import TableToolbar from "components/TableToolbar";
 
@@ -36,6 +37,7 @@ function Permissions() {
     [t.locale]
   );
 
+  const navigate = useNavigate();
   const { loading, rows, pageSize, setPageSize, page, setPage, rowCount } =
     useGetPermissionList();
 
@@ -58,6 +60,9 @@ function Permissions() {
         rowCount={rowCount}
         components={{
           Toolbar: TableToolbar,
+        }}
+        onRowDoubleClick={(params) => {
+          navigate(params.id as string);
         }}
       />
     </Box>

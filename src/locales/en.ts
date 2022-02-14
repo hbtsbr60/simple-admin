@@ -3,6 +3,7 @@ const messagesInEnglish = {
   "button.retry": "Retry",
   "button.submit": "Login",
   "button.goback": "Go back",
+  "button.add": "Add",
   "button.delete": "Delete",
   "button.create": "Create",
   "col.firstname": "First name",

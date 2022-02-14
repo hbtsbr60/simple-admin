@@ -6,6 +6,7 @@ import {
   GridValueFormatterParams,
 } from "@mui/x-data-grid";
 import { useIntl } from "react-intl";
+import { useNavigate } from "react-router-dom";
 import { useGetUserList } from "api/user";
 import TableToolbar from "components/TableToolbar";
 
@@ -48,6 +49,7 @@ function Users() {
     ],
     [t.locale]
   );
+  const navigate = useNavigate();
   const { rows, loading, pageSize, setPageSize, page, setPage, rowCount } =
     useGetUserList();
 
@@ -70,6 +72,9 @@ function Users() {
         rowCount={rowCount}
         components={{
           Toolbar: TableToolbar,
+        }}
+        onRowDoubleClick={(params) => {
+          navigate(params.id as string);
         }}
       />
     </Box>

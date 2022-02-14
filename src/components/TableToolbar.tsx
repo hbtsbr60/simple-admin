@@ -25,7 +25,7 @@ function TableToolbar() {
           component={Link}
           to={routeNameMap.NEW}
         >
-          {t.formatMessage({ id: "button.create" })}
+          {t.formatMessage({ id: "button.add" })}
         </Button>
         <Button color="error" size="small" startIcon={<Delete />}>
           {t.formatMessage({ id: "button.delete" })}
