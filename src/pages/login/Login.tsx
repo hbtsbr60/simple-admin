@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useIntl } from "react-intl";
-import { useLogin } from "api/auth";
+import { useLogin, useAuthState } from "api/auth";
 import routeNameMap from "constants/routeNameMap";
 
 type FormData = {
@@ -53,12 +53,17 @@ function Login() {
     resolver: yupResolver(schema),
   });
 
+  const { isLoggedIn } = useAuthState();
   const { login, error, reset, data } = useLogin();
   const { state }: any = useLocation();
 
   const onSubmit = handleSubmit(async (values) => {
     await login(values);
   });
+
+  if (isLoggedIn) {
+    return <Navigate to={routeNameMap.HOME} replace />;
+  }
 
   if (data?.success) {
     return <Navigate to={state?.from?.pathname || routeNameMap.HOME} replace />;

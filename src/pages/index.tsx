@@ -16,7 +16,7 @@ import Dashboard from "./dashboard/Dashboard";
 import Messages from "./messages/Messages";
 import Permissions from "./permissions/Permissions";
 
-function RequireAuth({ children }: { children: JSX.Element }) {
+function Authenticated({ children }: { children: JSX.Element }) {
   const location = useLocation();
   const { isLoggedIn } = useAuthState();
 
@@ -24,16 +24,6 @@ function RequireAuth({ children }: { children: JSX.Element }) {
     return (
       <Navigate to={routeNameMap.LOGIN} state={{ from: location }} replace />
     );
-  }
-
-  return children;
-}
-
-function RedirectAuth({ children }: { children: JSX.Element }) {
-  const { isLoggedIn } = useAuthState();
-
-  if (isLoggedIn) {
-    return <Navigate to={routeNameMap.HOME} replace />;
   }
 
   return children;
@@ -63,20 +53,13 @@ function Pages() {
     <BrowserRouter>
       <Routes>
         <Route element={<RootLayout />}>
-          <Route
-            path={routeNameMap.LOGIN}
-            element={
-              <RedirectAuth>
-                <Login />
-              </RedirectAuth>
-            }
-          />
+          <Route path={routeNameMap.LOGIN} element={<Login />} />
           <Route
             path={routeNameMap.HOME}
             element={
-              <RequireAuth>
+              <Authenticated>
                 <AppLayout />
-              </RequireAuth>
+              </Authenticated>
             }
           >
             <Route index element={<Dashboard />} />
