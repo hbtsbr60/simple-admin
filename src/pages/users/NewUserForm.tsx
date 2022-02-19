@@ -5,7 +5,7 @@ function NewUserForm() {
   const t = useIntl();
 
   return (
-    <Box maxWidth={400}>
+    <Box maxWidth={800}>
       <Stack component="form" spacing={1}>
         <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
           <TextField
