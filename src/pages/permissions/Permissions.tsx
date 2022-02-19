@@ -43,7 +43,7 @@ function Permissions() {
 
   return (
     <Box display="flex">
-      <DataGrid
+      <DataGridPro
         disableColumnMenu
         checkboxSelection
         disableSelectionOnClick
