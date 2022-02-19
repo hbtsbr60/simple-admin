@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Box } from "@mui/material";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGridPro, GridColDef } from "@mui/x-data-grid-pro";
 import { useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 import { useGetPermissionList } from "api/permission";

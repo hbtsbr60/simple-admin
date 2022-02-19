@@ -5,7 +5,7 @@ import {
   GridToolbarContainer,
   GridToolbarExport,
   GridToolbarFilterButton,
-} from "@mui/x-data-grid";
+} from "@mui/x-data-grid-pro";
 import { Link } from "react-router-dom";
 import { useIntl } from "react-intl";
 import routeNameMap from "constants/routeNameMap";

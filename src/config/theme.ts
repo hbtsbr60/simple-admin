@@ -1,7 +1,7 @@
 import { useMemo, useState, createContext, useContext } from "react";
 import { PaletteMode, createTheme, responsiveFontSizes } from "@mui/material";
 import { grey } from "@mui/material/colors";
-import type {} from "@mui/x-data-grid/themeAugmentation";
+import type {} from "@mui/x-data-grid-pro/themeAugmentation";
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 

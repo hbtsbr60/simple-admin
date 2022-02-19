@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 import { Box } from "@mui/material";
 import {
-  DataGrid,
+  DataGridPro,
   GridColDef,
   GridValueFormatterParams,
-} from "@mui/x-data-grid";
+} from "@mui/x-data-grid-pro";
 import { useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 import { useGetUserList } from "api/user";
@@ -55,7 +55,7 @@ function Users() {
 
   return (
     <Box display="flex">
-      <DataGrid
+      <DataGridPro
         disableColumnMenu
         checkboxSelection
         disableSelectionOnClick
