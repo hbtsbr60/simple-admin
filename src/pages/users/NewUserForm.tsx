@@ -6,7 +6,7 @@ function NewUserForm() {
 
   return (
     <Box maxWidth={800}>
-      <Stack component="form" spacing={1}>
+      <Stack component="form" spacing={1} autoComplete="off">
         <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
           <TextField
             fullWidth
@@ -47,6 +47,13 @@ function NewUserForm() {
           id="password"
           variant="filled"
           label={t.formatMessage({ id: "label.password" })}
+          InputLabelProps={{ shrink: true }}
+        />
+        <TextField
+          type="language"
+          id="language"
+          variant="filled"
+          label={t.formatMessage({ id: "label.language" })}
           InputLabelProps={{ shrink: true }}
         />
         <Box>
