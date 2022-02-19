@@ -27,10 +27,19 @@ function RouterBreadcrumbs() {
 
   const breadcrumbNameMap: { [key: string]: string } = React.useMemo(
     () => ({
-      [routeNameMap.USERS]: t.formatMessage({ id: "entity.users" }),
-      [routeNameMap.ROLES]: t.formatMessage({ id: "entity.roles" }),
-      [routeNameMap.MESSAGES]: t.formatMessage({ id: "entity.messages" }),
-      [routeNameMap.PERMISSIONS]: t.formatMessage({ id: "entity.permissions" }),
+      [routeNameMap.USERS]: t.formatMessage({ id: "nav.users" }),
+      [routeNameMap.ROLES]: t.formatMessage({ id: "nav.roles" }),
+      [routeNameMap.MESSAGES]: t.formatMessage({ id: "nav.messages" }),
+      [routeNameMap.PERMISSIONS]: t.formatMessage({ id: "nav.permissions" }),
+      [`${routeNameMap.USERS}/${routeNameMap.NEW}`]: t.formatMessage({
+        id: "nav.new",
+      }),
+      [`${routeNameMap.ROLES}/${routeNameMap.NEW}`]: t.formatMessage({
+        id: "nav.new",
+      }),
+      [`${routeNameMap.PERMISSIONS}/${routeNameMap.NEW}`]: t.formatMessage({
+        id: "nav.new",
+      }),
     }),
     [t.locale]
   );
