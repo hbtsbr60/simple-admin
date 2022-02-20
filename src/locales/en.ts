@@ -34,6 +34,7 @@ const messagesInEnglish = {
   "label.email": "Email address",
   "label.password": "Password",
   "label.phoneNumber": "Phone number",
+  "label.language": "Language",
   "login.input.username": "Username",
   "login.input.password": "Password",
   "login.validate.username": "Username is required",

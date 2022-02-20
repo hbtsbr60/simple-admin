@@ -15,7 +15,7 @@ function NewRoleForm() {
         />
         <TextField
           multiline
-          maxRows={4}
+          rows={4}
           id="description"
           variant="filled"
           label={t.formatMessage({ id: "label.description" })}

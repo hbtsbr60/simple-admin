@@ -1,4 +1,14 @@
-import { Box, Button, Stack, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+  TextField,
+} from "@mui/material";
+import languages from "constants/languages";
 import { useIntl } from "react-intl";
 
 function NewUserForm() {
@@ -49,13 +59,23 @@ function NewUserForm() {
           label={t.formatMessage({ id: "label.password" })}
           InputLabelProps={{ shrink: true }}
         />
-        <TextField
-          type="language"
-          id="language"
-          variant="filled"
-          label={t.formatMessage({ id: "label.language" })}
-          InputLabelProps={{ shrink: true }}
-        />
+        <FormControl fullWidth>
+          <InputLabel id="language">
+            {t.formatMessage({ id: "label.language" })}
+          </InputLabel>
+          <Select
+            variant="filled"
+            labelId="language"
+            id="language"
+            label={t.formatMessage({
+              id: "language",
+            })}
+          >
+            {languages.map(({ value, label }) => (
+              <MenuItem value={value}>{label}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         <Box>
           <Button variant="contained">
             {t.formatMessage({ id: "button.addUser" })}
