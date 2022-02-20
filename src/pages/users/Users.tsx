@@ -29,6 +29,7 @@ function Users() {
         field: "username",
         headerName: t.formatMessage({ id: "col.username" }),
         width: 150,
+        hideable: false,
       },
       {
         field: "email",
