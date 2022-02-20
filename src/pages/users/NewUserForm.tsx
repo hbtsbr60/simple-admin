@@ -23,6 +23,7 @@ function NewUserForm() {
             id="firstName"
             variant="filled"
             label={t.formatMessage({ id: "label.firstName" })}
+            InputLabelProps={{ shrink: true }}
           />
           <TextField
             fullWidth
