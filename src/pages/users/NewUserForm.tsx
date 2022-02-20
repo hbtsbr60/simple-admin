@@ -67,13 +67,16 @@ function NewUserForm() {
           <Select
             variant="filled"
             labelId="language"
+            value="en"
             id="language"
             label={t.formatMessage({
-              id: "language",
+              id: "label.language",
             })}
           >
             {languages.map(({ value, label }) => (
-              <MenuItem value={value}>{label}</MenuItem>
+              <MenuItem key={value} value={value}>
+                {label}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>
