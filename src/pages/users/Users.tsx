@@ -4,6 +4,7 @@ import {
   DataGridPro,
   GridColDef,
   GridValueFormatterParams,
+  GRID_CHECKBOX_SELECTION_COL_DEF,
 } from "@mui/x-data-grid-pro";
 import { useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
@@ -71,6 +72,9 @@ function Users() {
         page={page}
         onPageChange={setPage}
         rowCount={rowCount}
+        initialState={{
+          pinnedColumns: { left: [GRID_CHECKBOX_SELECTION_COL_DEF.field] },
+        }}
         components={{
           Toolbar: TableToolbar,
         }}

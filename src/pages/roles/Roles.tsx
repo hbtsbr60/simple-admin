@@ -1,6 +1,10 @@
 import { useMemo } from "react";
 import { Box } from "@mui/material";
-import { DataGridPro, GridColDef } from "@mui/x-data-grid-pro";
+import {
+  DataGridPro,
+  GridColDef,
+  GRID_CHECKBOX_SELECTION_COL_DEF,
+} from "@mui/x-data-grid-pro";
 import { useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 import { useGetRoleList } from "api/role";
@@ -46,6 +50,9 @@ function Roles() {
         pageSize={pageSize}
         onPageSizeChange={setPageSize}
         rowCount={rowCount}
+        initialState={{
+          pinnedColumns: { left: [GRID_CHECKBOX_SELECTION_COL_DEF.field] },
+        }}
         components={{
           Toolbar: TableToolbar,
         }}
