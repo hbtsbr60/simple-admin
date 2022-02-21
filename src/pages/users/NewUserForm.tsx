@@ -15,8 +15,8 @@ function NewUserForm() {
   const t = useIntl();
 
   return (
-    <Box maxWidth={800}>
-      <Stack component="form" spacing={1} autoComplete="off">
+    <Box maxWidth={800} component="form" autoComplete="off">
+      <Stack spacing={1}>
         <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
           <TextField
             fullWidth

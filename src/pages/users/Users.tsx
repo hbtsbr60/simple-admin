@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { Box } from "@mui/material";
 import {
   DataGridPro,
+  GridCellValue,
   GridColDef,
   GridValueFormatterParams,
   GRID_CHECKBOX_SELECTION_COL_DEF,
@@ -47,6 +48,7 @@ function Users() {
             dateStyle: "medium",
           }),
         valueGetter: ({ value }) => new Date(value as string),
+        valueParser: (value: GridCellValue) => new Date(value as string),
       },
     ],
     [t.locale]
