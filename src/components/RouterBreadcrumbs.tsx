@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import * as React from "react";
 import Link, { LinkProps } from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
