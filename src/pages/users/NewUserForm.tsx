@@ -14,6 +14,11 @@ import { useIntl } from "react-intl";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import languages from "constants/languages";
+import {
+  PASSWORD_MAX_LENGTH,
+  PASSWORD_MIN_LENGTH,
+  PHONE_NUMBER_LENGTH,
+} from "constants/validation";
 
 type FormData = {
   firstName: string;
@@ -48,12 +53,21 @@ function NewUserForm() {
             .required(t.formatMessage({ id: "error.email.required" })),
           password: yup
             .string()
-            .min(8, t.formatMessage({ id: "error.password.min" }))
-            .max(64, t.formatMessage({ id: "error.password.max" }))
+            .min(
+              PASSWORD_MIN_LENGTH,
+              t.formatMessage({ id: "error.password.min" })
+            )
+            .max(
+              PASSWORD_MAX_LENGTH,
+              t.formatMessage({ id: "error.password.max" })
+            )
             .required(t.formatMessage({ id: "error.password.required" })),
           phoneNumber: yup
             .string()
-            .length(11, t.formatMessage({ id: "error.phoneNumber.len" })),
+            .length(
+              PHONE_NUMBER_LENGTH,
+              t.formatMessage({ id: "error.phoneNumber.len" })
+            ),
         })
         .required(),
     [t.locale]
