@@ -22,6 +22,7 @@ import NewPermissionForm from "./permissions/NewPermissionForm";
 import ShowUser from "./users/ShowUser";
 import ShowRole from "./roles/ShowRole";
 import ShowPermission from "./permissions/ShowPermission";
+import Calendar from "./calendar/Calendar";
 
 function Authenticated({ children }: { children: JSX.Element }) {
   const location = useLocation();
@@ -40,6 +41,10 @@ const pages = [
   {
     path: routeNameMap.MESSAGES,
     element: <Messages />,
+  },
+  {
+    path: routeNameMap.CALENDAR,
+    element: <Calendar />,
   },
 ];
 

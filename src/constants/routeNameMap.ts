@@ -1,5 +1,6 @@
 const routeNameMap = {
   HOME: "/",
+  CALENDAR: "/calendar",
   LOGIN: "/login",
   USERS: "/users",
   ROLES: "/roles",

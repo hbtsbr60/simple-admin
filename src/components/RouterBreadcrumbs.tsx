@@ -30,6 +30,7 @@ function RouterBreadcrumbs() {
       [routeNameMap.USERS]: t.formatMessage({ id: "nav.users" }),
       [routeNameMap.ROLES]: t.formatMessage({ id: "nav.roles" }),
       [routeNameMap.MESSAGES]: t.formatMessage({ id: "nav.messages" }),
+      [routeNameMap.CALENDAR]: t.formatMessage({ id: "nav.calendar" }),
       [routeNameMap.PERMISSIONS]: t.formatMessage({ id: "nav.permissions" }),
       [`${routeNameMap.USERS}/${routeNameMap.NEW}`]: t.formatMessage({
         id: "nav.new",

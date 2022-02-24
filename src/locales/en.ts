@@ -1,5 +1,5 @@
 const messagesInEnglish = {
-  "app.name": "Simple Admin",
+  "app.name": "Admin",
   "button.retry": "Retry",
   "button.submit": "Login",
   "button.goback": "Go back",
@@ -18,7 +18,6 @@ const messagesInEnglish = {
   "col.action": "Action",
   "col.resource": "Resource",
   "col.description": "Description",
-  "drawer.dashboard": "Dashboard",
   "entity.users": "Users",
   "entity.roles": "Roles",
   "entity.permissions": "Permissions",
@@ -41,6 +40,8 @@ const messagesInEnglish = {
   "login.validate.password": "Password is required",
   "menu.profile": "Profile",
   "menu.logout": "Logout",
+  "nav.dashboard": "Dashboard",
+  "nav.calendar": "Calendar",
   "nav.users": "Users",
   "nav.roles": "Roles",
   "nav.permissions": "Permissions",

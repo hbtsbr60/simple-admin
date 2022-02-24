@@ -19,6 +19,7 @@ import {
   NotificationsOutlined,
   MailOutline,
   Fingerprint,
+  CalendarToday,
 } from "@mui/icons-material";
 import { useLogout, useGetMe } from "api/auth";
 import { useColorMode } from "config/theme";
@@ -60,7 +61,14 @@ export default function AppLayout() {
         to: routeNameMap.HOME,
         icon: <Dashboard />,
         text: t.formatMessage({
-          id: "drawer.dashboard",
+          id: "nav.dashboard",
+        }),
+      },
+      {
+        to: routeNameMap.CALENDAR,
+        icon: <CalendarToday />,
+        text: t.formatMessage({
+          id: "nav.calendar",
         }),
       },
     ],
@@ -73,21 +81,21 @@ export default function AppLayout() {
         to: routeNameMap.USERS,
         icon: <PersonOutlined />,
         text: t.formatMessage({
-          id: "entity.users",
+          id: "nav.users",
         }),
       },
       {
         to: routeNameMap.ROLES,
         icon: <BadgeOutlined />,
         text: t.formatMessage({
-          id: "entity.roles",
+          id: "nav.roles",
         }),
       },
       {
         to: routeNameMap.PERMISSIONS,
         icon: <Fingerprint />,
         text: t.formatMessage({
-          id: "entity.permissions",
+          id: "nav.permissions",
         }),
       },
     ],
@@ -100,7 +108,7 @@ export default function AppLayout() {
         to: routeNameMap.MESSAGES,
         icon: <MailOutline />,
         text: t.formatMessage({
-          id: "entity.messages",
+          id: "nav.messages",
         }),
       },
     ],
