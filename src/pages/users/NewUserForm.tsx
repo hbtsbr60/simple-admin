@@ -55,13 +55,21 @@ function NewUserForm() {
             .string()
             .min(
               PASSWORD_MIN_LENGTH,
-              t.formatMessage({ id: "error.password.min" })
+              t.formatMessage(
+                { id: "error.password.min" },
+                { length: PASSWORD_MIN_LENGTH }
+              )
             )
             .max(
               PASSWORD_MAX_LENGTH,
               t.formatMessage({ id: "error.password.max" })
             )
-            .required(t.formatMessage({ id: "error.password.required" })),
+            .required(
+              t.formatMessage(
+                { id: "error.password.required" },
+                { min: PASSWORD_MIN_LENGTH, max: PASSWORD_MAX_LENGTH }
+              )
+            ),
           phoneNumber: yup
             .string()
             .length(
@@ -77,11 +85,15 @@ function NewUserForm() {
     register,
     handleSubmit,
     formState: { errors, touchedFields },
+    reset,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = handleSubmit((values) => setUsers([...users, values]));
+  const onSubmit = handleSubmit((values) => {
+    setUsers([...users, values]);
+    reset();
+  });
 
   return (
     <Box maxWidth={800} component="form" autoComplete="off" onSubmit={onSubmit}>
@@ -120,6 +132,7 @@ function NewUserForm() {
           id="email"
           variant="filled"
           label={t.formatMessage({ id: "label.email" })}
+          placeholder={t.formatMessage({ id: "placeholder.email" })}
           InputLabelProps={{ shrink: true }}
           {...register("email")}
           error={touchedFields.email && !!errors.email}
@@ -130,6 +143,7 @@ function NewUserForm() {
           id="phoneNumber"
           variant="filled"
           label={t.formatMessage({ id: "label.phoneNumber" })}
+          placeholder={t.formatMessage({ id: "placeholder.phoneNumber" })}
           InputLabelProps={{ shrink: true }}
           {...register("phoneNumber")}
           error={touchedFields.phoneNumber && !!errors.phoneNumber}
