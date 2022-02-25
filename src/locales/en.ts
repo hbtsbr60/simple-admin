@@ -22,7 +22,7 @@ const messagesInEnglish = {
   "entity.roles": "Roles",
   "entity.permissions": "Permissions",
   "entity.messages": "Messages",
-  "error.something.went.wrong": "Something went wrong...",
+  "error.somethingWentWrong": "Something went wrong...",
   "error.firstName.required": "First name is required",
   "error.lastName.required": "Last name is required",
   "error.email": "Enter a valid email address",

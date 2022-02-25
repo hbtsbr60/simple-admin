@@ -195,7 +195,7 @@ export default function AppLayout() {
   if (!user || error) {
     return (
       <ErrorState
-        message={t.formatMessage({ id: "error.something.went.wrong" })}
+        message={t.formatMessage({ id: "error.somethingWentWrong" })}
         onRetry={handleRefresh}
       />
     );
