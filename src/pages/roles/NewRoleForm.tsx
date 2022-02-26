@@ -5,7 +5,7 @@ function NewRoleForm() {
   const t = useIntl();
 
   return (
-    <Box component="form" autoComplete="off" maxWidth={800}>
+    <Box component="form" autoComplete="off" maxWidth={600}>
       <Stack spacing={1}>
         <TextField
           id="name"

@@ -63,7 +63,7 @@ function NewPermissionForm() {
   });
 
   return (
-    <Box component="form" autoComplete="off" maxWidth={800} onSubmit={onSubmit}>
+    <Box component="form" autoComplete="off" maxWidth={600} onSubmit={onSubmit}>
       <Stack spacing={1}>
         <TextField
           id="name"
