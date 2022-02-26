@@ -32,7 +32,6 @@ const messagesInEnglish = {
     "Password should be {min} to {max} characters long",
   "error.password.min": "Password should be at least {length} characters long",
   "error.password.max": "Password too long",
-  "error.username.required": "Username is required",
   "label.name": "Name",
   "label.description": "Description",
   "label.action": "Action",

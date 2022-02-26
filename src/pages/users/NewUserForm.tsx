@@ -23,7 +23,6 @@ import {
 type FormData = {
   firstName: string;
   lastName: string;
-  username: string;
   email: string;
   phoneNumber: string;
   password: string;
@@ -44,9 +43,6 @@ function NewUserForm() {
           lastName: yup
             .string()
             .required(t.formatMessage({ id: "error.lastName.required" })),
-          username: yup
-            .string()
-            .required(t.formatMessage({ id: "error.username.required" })),
           email: yup
             .string()
             .email(t.formatMessage({ id: "error.email" }))
@@ -118,15 +114,6 @@ function NewUserForm() {
             helperText={touchedFields?.lastName && errors.lastName?.message}
           />
         </Stack>
-        <TextField
-          id="username"
-          variant="filled"
-          label={t.formatMessage({ id: "label.username" })}
-          InputLabelProps={{ shrink: true }}
-          {...register("username")}
-          error={touchedFields.username && !!errors.username}
-          helperText={touchedFields?.username && errors.username?.message}
-        />
         <TextField
           type="email"
           id="email"
