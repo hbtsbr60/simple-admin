@@ -6,14 +6,17 @@ import {
   GridActionsCellItem,
   GridColDef,
   GridRowParams,
+  useGridApiRef,
 } from "@mui/x-data-grid-pro";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, Stack, TextField } from "@mui/material";
 import { isAlphaNumeric } from "utils/validators";
 import { Edit, Delete } from "@mui/icons-material";
+import { nanoid } from "nanoid";
 
 type FormData = {
+  id?: string;
   name: string;
   action: string;
   resource: string;
@@ -21,6 +24,7 @@ type FormData = {
 };
 
 function NewPermissionForm() {
+  const apiRef = useGridApiRef();
   const t = useIntl();
   const schema = useMemo(
     () =>
@@ -54,7 +58,7 @@ function NewPermissionForm() {
     [t.locale]
   );
 
-  const [rows, setRows] = useState<Array<FormData>>([]);
+  const [rows] = useState<Array<FormData>>([]);
   const {
     register,
     handleSubmit,
@@ -64,25 +68,38 @@ function NewPermissionForm() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = handleSubmit((values) => {
-    setRows([...rows, values]);
-    reset();
+  const onSubmit = handleSubmit((values, e) => {
+    if (values.id) {
+      apiRef.current.updateRows([values]);
+    } else {
+      apiRef.current.updateRows([{ id: nanoid(), ...values }]);
+    }
+    reset({}, { keepValues: false });
+    e?.target.reset();
   });
+
+  const handleDelete = useCallback((id) => {
+    apiRef.current.updateRows([{ id, _action: "delete" }]);
+  }, []);
+
+  const handleEdit = useCallback((values) => {
+    reset(values);
+  }, []);
 
   const getActions = useCallback(
     (params: GridRowParams) => [
       <GridActionsCellItem
         icon={<Edit />}
         label="Edit"
-        onClick={() => console.log(params)}
+        onClick={() => handleEdit(params.row)}
       />,
       <GridActionsCellItem
         icon={<Delete />}
         label="Delete"
-        onClick={() => console.log(params)}
+        onClick={() => handleDelete(params.id)}
       />,
     ],
-    []
+    [handleDelete]
   );
 
   const columns: GridColDef[] = useMemo(
@@ -95,17 +112,18 @@ function NewPermissionForm() {
         field: "actions",
         type: "actions",
         getActions,
+        resizable: false,
       },
     ],
-    []
+    [getActions]
   );
 
   return (
     <Stack flexGrow={1} direction={{ xs: "column", sm: "row" }} spacing={1}>
       <Box flexGrow={1}>
         <DataGridPro
+          apiRef={apiRef}
           autoHeight
-          getRowId={(row) => row.name}
           columns={columns}
           rows={rows}
           initialState={{ pinnedColumns: { right: ["actions"] } }}
@@ -120,6 +138,7 @@ function NewPermissionForm() {
       >
         <Stack spacing={1}>
           <TextField
+            autoFocus
             id="name"
             variant="filled"
             label={t.formatMessage({ id: "label.name" })}
