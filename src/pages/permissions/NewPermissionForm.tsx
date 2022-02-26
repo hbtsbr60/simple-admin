@@ -4,6 +4,7 @@ import { useIntl } from "react-intl";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, Stack, TextField } from "@mui/material";
+import { isAlphaNumeric } from "utils/validators";
 
 type FormData = {
   name: string;
@@ -28,7 +29,7 @@ function NewPermissionForm() {
                 { id: "error.text.alphaNumeric" },
                 { field: "Name" }
               ),
-              (value = "") => /^[a-zA-Z0-9_]+$/.test(value)
+              isAlphaNumeric
             ),
           action: yup
             .string()
