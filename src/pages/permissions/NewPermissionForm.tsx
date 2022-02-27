@@ -69,13 +69,9 @@ function NewPermissionForm() {
   });
 
   const onSubmit = handleSubmit((values, e) => {
-    if (values.id) {
-      apiRef.current.updateRows([values]);
-    } else {
-      apiRef.current.updateRows([{ id: nanoid(), ...values }]);
-    }
+    apiRef.current.updateRows([{ id: values.id || nanoid(), ...values }]);
     reset({}, { keepValues: false });
-    e?.target.reset();
+    e?.target?.reset();
   });
 
   const handleDelete = useCallback((id) => {
@@ -84,6 +80,10 @@ function NewPermissionForm() {
 
   const handleEdit = useCallback((values) => {
     reset(values);
+  }, []);
+
+  const handleReset = useCallback(() => {
+    reset({}, { keepValues: false });
   }, []);
 
   const getActions = useCallback(
@@ -134,6 +134,7 @@ function NewPermissionForm() {
         autoComplete="off"
         maxWidth={500}
         onSubmit={onSubmit}
+        onReset={handleReset}
         flex={1}
       >
         <Stack spacing={1}>
@@ -180,11 +181,14 @@ function NewPermissionForm() {
               touchedFields?.description && errors.description?.message
             }
           />
-          <Box>
+          <Stack direction="row" spacing={1}>
             <Button type="submit" variant="contained">
-              {t.formatMessage({ id: "button.addPermission" })}
+              {t.formatMessage({ id: "button.save" })}
             </Button>
-          </Box>
+            <Button type="reset" variant="outlined">
+              {t.formatMessage({ id: "button.reset" })}
+            </Button>
+          </Stack>
         </Stack>
       </Box>
     </Stack>
